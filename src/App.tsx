@@ -1,5 +1,5 @@
 import styles from "./App.module.scss";
-import { Button } from "./components/Button/Button";
+import { CategoryButton, MainButton } from "./components/buttons";
 function App() {
   return (
     <div className={styles.container}>
@@ -7,11 +7,17 @@ function App() {
       <h2>Recent Posts</h2>
 
       <div className={styles.buttons}>
-        <Button variant="primary">Apply filters</Button>
+        <MainButton variant="primary">Apply filters</MainButton>
 
-        <Button leftIcon="arrow-left" variant="secondary">
+        <MainButton icon="arrow-left" variant="secondary">
           Back
-        </Button>
+        </MainButton>
+
+        <CategoryButton
+          isOpen
+          onClick={() => console.log("clicked")}
+          selectedCategories={["Category 1", "Category 2"]}
+        />
       </div>
     </div>
   );

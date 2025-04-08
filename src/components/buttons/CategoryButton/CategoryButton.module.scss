@@ -1,0 +1,33 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mix;
+
+.button {
+  cursor: pointer;
+  min-width: 11rem;
+  gap: $spacing-xxsmall;
+  padding: $spacing-small;
+  height: $spacing-xlarge;
+  transition: all 0.3s ease;
+  @include mix.flex-center();
+  padding-left: $spacing-medium;
+  color: $color-secondary-medium;
+  border-radius: $border-radius-huge;
+  @include mix.body-text("small", "bold");
+  background-color: $color-neutral-lightest;
+  border: 1px solid $color-secondary-medium;
+
+  & svg {
+    background-color: transparent;
+    stroke: $color-secondary-medium;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover,
+  &.selected {
+    background-color: rgba($color-secondary-medium, 0.05);
+  }
+}
+
+.iconOpen {
+  transform: rotate(180deg);
+}

@@ -57,12 +57,16 @@
     font-size: variables.$font-size-body-large;
   } @else if $size == "small" {
     font-size: variables.$font-size-body-small;
+  } @else if $size == "caption" {
+    font-size: variables.$font-size-caption;
   }
 
   @if $weight == "regular" {
     font-weight: variables.$weight-regular;
   } @else if $weight == "semibold" {
     font-weight: variables.$weight-semibold;
+  } @else if $weight == "bold" {
+    font-weight: variables.$weight-bold;
   }
 }
 

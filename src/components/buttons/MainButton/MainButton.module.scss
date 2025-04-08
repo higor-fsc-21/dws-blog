@@ -1,5 +1,5 @@
-@use "../../styles/variables" as variables;
-@use "../../styles/mixins" as mix;
+@use "../../../styles/variables" as variables;
+@use "../../../styles/mixins" as mix;
 
 .button {
   border: none;
@@ -10,6 +10,10 @@
   @include mix.body-text("large", "semibold");
   border-radius: variables.$border-radius-huge;
   padding: variables.$spacing-small variables.$spacing-medium;
+
+  &.fullWidth {
+    width: 100%;
+  }
 
   & svg {
     transition: inherit;

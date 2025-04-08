@@ -1,0 +1,44 @@
+import { ButtonHTMLAttributes, useMemo } from "react";
+import styles from "./CategoryButton.module.scss";
+import { DynamicIcon } from "lucide-react/dynamic";
+
+const ICON_SIZE = 24;
+
+type AllowedHtmlButtonProps = Pick<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "onClick"
+>;
+
+type CategoryButtonProps = AllowedHtmlButtonProps & {
+  isOpen?: boolean;
+  selectedCategories?: string[];
+};
+
+export const CategoryButton = ({
+  isOpen = false,
+  selectedCategories = [],
+  ...defaultButtonProps
+}: CategoryButtonProps) => {
+  const buttonClasses = [
+    styles.button,
+    selectedCategories.length > 0 && styles.selected,
+    isOpen ? styles.open : "",
+  ].join(" ");
+
+  const label = useMemo(() => {
+    if (selectedCategories.length === 0) return "Category";
+    return selectedCategories.join(", ");
+  }, [selectedCategories]);
+
+  return (
+    <button className={buttonClasses} {...defaultButtonProps}>
+      {label}
+
+      <DynamicIcon
+        size={ICON_SIZE}
+        name="chevron-down"
+        className={isOpen ? styles.iconOpen : ""}
+      />
+    </button>
+  );
+};
