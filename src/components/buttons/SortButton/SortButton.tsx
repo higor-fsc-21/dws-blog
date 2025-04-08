@@ -15,6 +15,8 @@ export const SortButton = ({
 }: SortButtonProps) => {
   const [order, setOrder] = useState<SortOrder>(initialOrder);
 
+  const label = order === "newest" ? "Newest first" : "Oldest first";
+
   const handleClick = () => {
     const newOrder = order === "newest" ? "oldest" : "newest";
     setOrder(newOrder);
@@ -27,10 +29,7 @@ export const SortButton = ({
       className={styles.sortButton}
       aria-label={`Sort by ${order} first`}
     >
-      <span className={styles.text}>
-        {order === "newest" ? "Newest first" : "Oldest first"}
-      </span>
-
+      <span className={styles.text}>{label}</span>
       <DynamicIcon name="arrow-up-down" size={IconSize.MEDIUM} />
     </button>
   );
