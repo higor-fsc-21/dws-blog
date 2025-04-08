@@ -1,0 +1,49 @@
+@use "../../styles/variables" as variables;
+@use "../../styles/mixins" as mix;
+
+.button {
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  @include mix.flex-center();
+  gap: variables.$spacing-small;
+  @include mix.body-text("large", "semibold");
+  border-radius: variables.$border-radius-huge;
+  padding: variables.$spacing-small variables.$spacing-medium;
+
+  & svg {
+    transition: inherit;
+  }
+
+  &.primary {
+    color: variables.$color-neutral-lightest;
+    background-color: variables.$color-secondary-medium;
+
+    & svg {
+      stroke: variables.$color-neutral-lightest;
+    }
+
+    &:hover {
+      background-color: variables.$color-secondary-dark;
+    }
+  }
+
+  &.secondary {
+    background-color: transparent;
+    color: variables.$color-secondary-medium;
+    border: 1px solid variables.$color-secondary-medium;
+
+    & svg {
+      stroke: variables.$color-secondary-medium;
+    }
+
+    &:hover {
+      color: variables.$color-secondary-dark;
+      border-color: variables.$color-secondary-dark;
+
+      & svg {
+        stroke: variables.$color-secondary-dark;
+      }
+    }
+  }
+}

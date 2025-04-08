@@ -1,5 +1,5 @@
-@use "variables";
-@use "mixins";
+@use "variables" as variables;
+@use "mixins" as mixins;
 
 * {
   margin: 0;
@@ -12,9 +12,11 @@ html {
 }
 
 body {
-  font-family: variables.$font-family-base;
-  font-size: variables.$font-size-body-large;
-  color: variables.$color-neutral-darkest;
-  line-height: variables.$line-height-body;
-  background-color: variables.$color-neutral-lightest;
+  & * {
+    font-family: variables.$font-family-base;
+    font-size: variables.$font-size-body-large;
+    color: variables.$color-neutral-darkest;
+    line-height: variables.$line-height-body;
+    background-color: variables.$color-neutral-lightest;
+  }
 }
