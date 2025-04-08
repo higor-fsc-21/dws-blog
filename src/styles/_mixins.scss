@@ -1,0 +1,74 @@
+@use "variables";
+
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin heading-style($size) {
+  font-family: variables.$font-family-base;
+  font-weight: variables.$weight-bold;
+  line-height: variables.$line-height-heading;
+
+  @if $size == "h1" {
+    font-size: variables.$font-size-h1;
+  } @else if $size == "h2" {
+    font-size: variables.$font-size-h2;
+  } @else if $size == "h3" {
+    font-size: variables.$font-size-h3;
+  }
+}
+
+@mixin body-text($size: "large", $weight: "regular") {
+  font-family: variables.$font-family-base;
+  line-height: variables.$line-height-body;
+
+  @if $size == "large" {
+    font-size: variables.$font-size-body-large;
+  } @else if $size == "small" {
+    font-size: variables.$font-size-body-small;
+  }
+
+  @if $weight == "regular" {
+    font-weight: variables.$weight-regular;
+  } @else if $weight == "semibold" {
+    font-weight: variables.$weight-semibold;
+  }
+}
+
+@mixin flex($direction: row, $justify: flex-start, $align: stretch) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+}

@@ -1,0 +1,17 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  @include tablet {
+    padding: 3rem 2rem;
+  }
+
+  @include desktop {
+    padding: 4rem 3rem;
+  }
+}
