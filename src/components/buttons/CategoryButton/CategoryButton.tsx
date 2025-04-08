@@ -32,7 +32,7 @@ export const CategoryButton = ({
 
   return (
     <button className={buttonClasses} {...defaultButtonProps}>
-      {label}
+      <span>{label}</span>
 
       <DynamicIcon
         size={ICON_SIZE}

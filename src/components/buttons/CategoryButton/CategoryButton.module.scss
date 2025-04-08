@@ -16,7 +16,14 @@
   background-color: $color-neutral-lightest;
   border: 1px solid $color-secondary-medium;
 
+  span {
+    max-width: 31.4rem; //
+    @include mix.truncate();
+    @include mix.inherit-all();
+  }
+
   & svg {
+    flex-shrink: 0;
     background-color: transparent;
     stroke: $color-secondary-medium;
     transition: transform 0.3s ease;

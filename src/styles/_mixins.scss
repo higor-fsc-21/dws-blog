@@ -76,3 +76,18 @@
   justify-content: $justify;
   flex-direction: $direction;
 }
+
+@mixin truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin inherit-all {
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  background-color: transparent;
+}
