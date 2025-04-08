@@ -1,0 +1,23 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mix;
+
+.searchButton {
+  border: none;
+  cursor: pointer;
+  width: $spacing-xxlarge;
+  height: $spacing-xxlarge;
+  @include mix.flex-center();
+  transition: all 0.3s ease-in-out;
+  border-radius: $border-radius-huge;
+  background-color: $color-primary-light;
+
+  svg {
+    background-color: transparent;
+    stroke: $color-neutral-lightest;
+  }
+
+  &:focus,
+  &:hover {
+    outline: $spacing-xxsmall solid rgba($color-primary-light, 0.1);
+  }
+}

@@ -1,13 +1,19 @@
 import styles from "./App.module.scss";
-import { CategoryButton, MainButton } from "./components/buttons";
-import { SortButton } from "./components/buttons/SortButton";
+import {
+  CategoryButton,
+  MainButton,
+  SearchButton,
+  SortButton,
+} from "./components/buttons";
+
 function App() {
   return (
     <div className={styles.container}>
       <h1>Welcome to Your Blog</h1>
-      <h2>Recent Posts</h2>
 
       <div className={styles.buttons}>
+        <SearchButton onClick={() => console.log("search clicked")} />
+
         <MainButton variant="primary">Apply filters</MainButton>
 
         <MainButton icon="arrow-left" variant="secondary">
@@ -22,9 +28,7 @@ function App() {
 
         <SortButton
           initialOrder="newest"
-          onOrderChange={(order: unknown) =>
-            console.log("order changed", order)
-          }
+          onOrderChange={(order) => console.log("order changed", order)}
         />
       </div>
     </div>
