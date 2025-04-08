@@ -12,7 +12,7 @@
   padding-left: $spacing-medium;
   color: $color-secondary-medium;
   border-radius: $border-radius-huge;
-  @include mix.body-text("small", "bold");
+  @include mix.body-text("caption", "bold");
   background-color: $color-neutral-lightest;
   border: 1px solid $color-secondary-medium;
 

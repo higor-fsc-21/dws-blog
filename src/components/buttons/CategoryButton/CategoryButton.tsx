@@ -1,8 +1,7 @@
 import { ButtonHTMLAttributes, useMemo } from "react";
 import styles from "./CategoryButton.module.scss";
 import { DynamicIcon } from "lucide-react/dynamic";
-
-const ICON_SIZE = 24;
+import { IconSize } from "../../../constants/icons";
 
 type AllowedHtmlButtonProps = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -35,8 +34,8 @@ export const CategoryButton = ({
       <span>{label}</span>
 
       <DynamicIcon
-        size={ICON_SIZE}
         name="chevron-down"
+        size={IconSize.MEDIUM}
         className={isOpen ? styles.iconOpen : ""}
       />
     </button>

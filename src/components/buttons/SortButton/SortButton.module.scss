@@ -1,0 +1,37 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mix;
+
+.sortButton {
+  border: none;
+  cursor: pointer;
+  gap: $spacing-xsmall;
+  height: $spacing-xlarge;
+  background: transparent;
+  padding: $spacing-xsmall;
+  @include mix.flex-center();
+  transition: all 0.2s ease-in-out;
+  border-radius: $border-radius-huge;
+  @include mix.body-text("large", "regular");
+
+  & svg {
+    stroke: $color-accent-medium;
+    background-color: transparent;
+  }
+
+  .text {
+    background-color: transparent;
+    color: $color-neutral-extra-dark;
+  }
+
+  &:hover {
+    background-color: $color-accent-medium;
+
+    .text {
+      color: $color-neutral-extra-light;
+    }
+
+    & svg {
+      stroke: $color-neutral-extra-light;
+    }
+  }
+}

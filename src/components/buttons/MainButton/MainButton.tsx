@@ -1,8 +1,7 @@
 import { ButtonHTMLAttributes } from "react";
 import styles from "./MainButton.module.scss";
 import { DynamicIcon, IconName } from "lucide-react/dynamic";
-
-const ICON_SIZE = 24;
+import { IconSize } from "../../../constants/icons";
 
 type AllowedHtmlButtonProps = Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
@@ -28,7 +27,7 @@ export const MainButton = ({
 
   return (
     <button className={buttonClasses} {...defaultButtonProps}>
-      {icon && <DynamicIcon name={icon} size={ICON_SIZE} />}
+      {icon && <DynamicIcon name={icon} size={IconSize.MEDIUM} />}
       {children}
     </button>
   );

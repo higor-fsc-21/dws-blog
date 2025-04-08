@@ -1,5 +1,6 @@
 import styles from "./App.module.scss";
 import { CategoryButton, MainButton } from "./components/buttons";
+import { SortButton } from "./components/buttons/SortButton";
 function App() {
   return (
     <div className={styles.container}>
@@ -17,6 +18,13 @@ function App() {
           isOpen
           onClick={() => console.log("clicked")}
           selectedCategories={["Category 1", "Category 2"]}
+        />
+
+        <SortButton
+          initialOrder="newest"
+          onOrderChange={(order: unknown) =>
+            console.log("order changed", order)
+          }
         />
       </div>
     </div>
