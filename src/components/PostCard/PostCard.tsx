@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Tag } from "../Tag/Tag"; // Assuming Tag component path
 import styles from "./PostCard.module.scss";
 
+const MAX_TITLE_HEIGHT = 30;
 const INITIAL_DESCRIPTION_CLASS = `${styles.description} ${styles.truncate1}`;
-
 interface PostCardProps {
   date: string;
   title: string;
@@ -36,7 +36,7 @@ export const PostCard: React.FC<PostCardProps> = ({
       const titleHeight = titleRef.current.offsetHeight;
 
       const truncateClass = titleHeight
-        ? titleHeight > 30
+        ? titleHeight > MAX_TITLE_HEIGHT
           ? styles.truncate2
           : styles.truncate3
         : "";
