@@ -1,0 +1,24 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mix;
+
+.option {
+  width: 100%;
+  border: none;
+  height: 2.8rem;
+  cursor: pointer;
+  background: none;
+  text-align: left;
+  padding: $spacing-xxsmall 0;
+  color: $color-neutral-darkest;
+
+  @include mix.body-text("small", "regular");
+
+  &:hover {
+    color: $color-secondary-medium;
+  }
+
+  &.selected {
+    color: $color-secondary-medium;
+    font-weight: $weight-semibold;
+  }
+}

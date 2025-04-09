@@ -1,0 +1,16 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as mix;
+
+.content {
+  left: 0;
+  width: 100%;
+  position: absolute;
+  gap: $spacing-xsmall;
+  padding: $spacing-medium;
+  border-radius: $spacing-medium;
+  top: calc(100% + $spacing-xsmall);
+  background-color: $color-neutral-lightest;
+  box-shadow: 0 4px 8px rgba($color-neutral-darkest, 0.1);
+
+  @include mix.flex-column;
+}
