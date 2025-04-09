@@ -3,6 +3,7 @@
 
 .searchButton {
   border: none;
+  flex-shrink: 0;
   cursor: pointer;
   width: $spacing-xxlarge;
   height: $spacing-xxlarge;

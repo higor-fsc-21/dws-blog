@@ -16,6 +16,10 @@
   }
 }
 
+.searchWrapper {
+  margin: $spacing-large 0;
+}
+
 .buttons {
   display: flex;
   gap: $spacing-small;

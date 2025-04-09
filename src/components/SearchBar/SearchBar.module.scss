@@ -1,0 +1,47 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as mix;
+
+.searchContainer {
+  width: 100%;
+  max-width: 40rem;
+  gap: $spacing-xsmall;
+  padding: $spacing-xsmall;
+  background-color: transparent;
+  padding-left: $spacing-medium;
+  transition: all 0.2s ease-in-out;
+  border-radius: $border-radius-huge;
+  border: 1px solid $color-neutral-extra-light;
+
+  @include mix.flex-between();
+
+  &:hover {
+    border-color: $color-accent-medium;
+  }
+
+  &:focus-within {
+    border-color: $color-accent-medium;
+  }
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  width: inherit;
+  background: transparent;
+  color: $color-neutral-extra-dark;
+
+  @include mix.body-text("large", "regular");
+
+  &::placeholder {
+    color: $color-neutral-extra-dark;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.searchButtonWrapper {
+  display: flex;
+  align-items: center;
+}
