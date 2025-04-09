@@ -1,6 +1,7 @@
 import styles from "./App.module.scss";
 import { CategoryButton, MainButton, SortButton } from "./components/buttons";
 import { SearchBar } from "./components/SearchBar";
+import { Tag } from "./components/Tag";
 
 function App() {
   return (
@@ -12,6 +13,11 @@ function App() {
           placeholder="Search"
           onSearch={() => console.log("search clicked")}
         />
+      </div>
+
+      <div className={styles.tags}>
+        <Tag>Category 1</Tag>
+        <Tag>Category 2</Tag>
       </div>
 
       <div className={styles.buttons}>

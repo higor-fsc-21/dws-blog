@@ -1,0 +1,14 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as mix;
+
+.tag {
+  height: $spacing-xlarge;
+  color: $color-neutral-extra-dark;
+  border-radius: $border-radius-huge;
+  padding: $spacing-xsmall $spacing-small;
+  background-color: $color-neutral-lightest;
+
+  @include mix.truncate();
+  @include mix.flex-center();
+  @include mix.body-text("caption", "regular");
+}

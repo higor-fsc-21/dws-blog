@@ -1,26 +1,35 @@
 @use "./styles/variables" as *;
-@use "./styles/mixins" as *;
+@use "./styles/mixins" as mix;
 
 .container {
-  width: 100%;
-  max-width: 1200px;
+  padding: $spacing-xlarge;
+  max-width: 120rem;
   margin: 0 auto;
-  padding: 2rem 1rem;
 
-  @include tablet {
-    padding: 3rem 2rem;
+  h1 {
+    @include mix.heading-style("h1");
+    margin-bottom: $spacing-large;
   }
 
-  @include desktop {
-    padding: 4rem 3rem;
+  h2 {
+    @include mix.heading-style("h2");
+    margin-bottom: $spacing-medium;
   }
 }
 
 .searchWrapper {
-  margin: $spacing-large 0;
+  margin-bottom: $spacing-large;
+}
+
+.tags {
+  display: flex;
+  gap: $spacing-small;
+  margin-bottom: $spacing-large;
+  flex-wrap: wrap;
 }
 
 .buttons {
   display: flex;
-  gap: $spacing-small;
+  gap: $spacing-medium;
+  flex-wrap: wrap;
 }
