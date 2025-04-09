@@ -6,10 +6,10 @@
   max-width: 40rem;
   gap: $spacing-xsmall;
   padding: $spacing-xsmall;
-  background-color: transparent;
   padding-left: $spacing-medium;
   transition: all 0.2s ease-in-out;
   border-radius: $border-radius-huge;
+  background-color: $color-neutral-white;
   border: 1px solid $color-neutral-extra-light;
 
   @include mix.flex-between();

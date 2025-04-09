@@ -1,0 +1,20 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as mix;
+
+.layout {
+  min-height: 100vh;
+  padding-top: 10rem;
+  background: linear-gradient(
+    45deg,
+    #d2f1ef 0%,
+    $color-neutral-white 50%,
+    #ffeef5 100%
+  );
+}
+
+.main {
+  max-width: 120rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: $spacing-large;
+}

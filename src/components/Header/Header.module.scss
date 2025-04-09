@@ -1,0 +1,29 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as mix;
+
+.header {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+  position: fixed;
+  padding: $spacing-small;
+  background-color: transparent;
+  border-bottom: 1px solid $color-neutral-extra-light;
+}
+
+.headerContent {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 120rem;
+  gap: $spacing-large;
+
+  @include mix.flex-between;
+}
+
+.logo {
+  width: 25rem;
+  color: $color-primary-medium;
+  @include mix.heading-style(h3);
+}
