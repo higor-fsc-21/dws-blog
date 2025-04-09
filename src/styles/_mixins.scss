@@ -35,6 +35,13 @@
   flex-direction: column;
 }
 
+@mixin flex($direction: row, $justify: flex-start, $align: center) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+}
+
 @mixin heading-style($size) {
   font-family: $font-family-base;
   font-weight: $weight-bold;
@@ -68,13 +75,6 @@
   } @else if $weight == "bold" {
     font-weight: $weight-bold;
   }
-}
-
-@mixin flex($direction: row, $justify: flex-start, $align: center) {
-  display: flex;
-  align-items: $align;
-  justify-content: $justify;
-  flex-direction: $direction;
 }
 
 @mixin inherit-all {

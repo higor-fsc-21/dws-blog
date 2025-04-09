@@ -8,7 +8,11 @@ const Header: React.FC = () => {
     <header className={styles.header}>
       <div className={styles.headerContent}>
         <img className={styles.logo} alt="Dentsu World Services" src={logo} />
-        <SearchBar placeholder="Search" onSearch={() => {}} />
+        <SearchBar
+          placeholder="Search"
+          onSearch={() => {}}
+          isMobileView={false}
+        />
       </div>
     </header>
   );

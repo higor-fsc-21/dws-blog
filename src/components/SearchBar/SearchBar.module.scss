@@ -1,47 +1,48 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as mix;
 
-.searchContainer {
+.searchBar {
   width: 100%;
-  max-width: 40rem;
+  min-width: 15rem;
   gap: $spacing-xsmall;
+  justify-self: flex-end;
   padding: $spacing-xsmall;
   padding-left: $spacing-medium;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  color: $color-neutral-extra-dark;
   border-radius: $border-radius-huge;
   background-color: $color-neutral-white;
   border: 1px solid $color-neutral-extra-light;
-
-  @include mix.flex-between();
-
-  &:hover {
-    border-color: $color-accent-medium;
-  }
-
-  &:focus-within {
-    border-color: $color-accent-medium;
-  }
-}
-
-.searchInput {
-  flex: 1;
-  border: none;
-  width: inherit;
-  background: transparent;
-  color: $color-neutral-extra-dark;
+  height: calc(2 * $spacing-medium + $spacing-xlarge);
+  padding-right: calc(2 * $spacing-medium + $spacing-xlarge);
 
   @include mix.body-text("large", "regular");
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &:focus-within,
+  &:hover {
+    outline: none;
+    border-color: $color-accent-medium;
+  }
 
   &::placeholder {
     color: $color-neutral-extra-dark;
   }
-
-  &:focus {
-    outline: none;
-  }
 }
 
-.searchButtonWrapper {
+.searchContainer {
+  width: 100%;
   display: flex;
-  align-items: center;
+  max-width: 40rem;
+  position: relative;
+}
+
+.button {
+  position: absolute;
+  top: $spacing-small;
+  right: $spacing-small;
 }

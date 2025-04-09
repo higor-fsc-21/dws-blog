@@ -17,13 +17,16 @@
   width: 100%;
   margin: 0 auto;
   max-width: 120rem;
+  position: relative;
   gap: $spacing-large;
 
-  @include mix.flex-between;
+  @include mix.flex(row, flex-end, center);
 }
 
 .logo {
+  left: 0;
   width: 25rem;
+  position: absolute;
   color: $color-primary-medium;
   @include mix.heading-style(h3);
 }

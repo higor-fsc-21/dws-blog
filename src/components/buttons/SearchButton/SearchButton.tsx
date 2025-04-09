@@ -6,11 +6,19 @@ import { IconSize } from "../../../constants/icons";
 type SearchButtonProps = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
   "onClick"
->;
+> & {
+  className?: string;
+};
 
-export const SearchButton = ({ ...defaultButtonProps }: SearchButtonProps) => {
+export const SearchButton = ({
+  className,
+  ...defaultButtonProps
+}: SearchButtonProps) => {
   return (
-    <button className={styles.searchButton} {...defaultButtonProps}>
+    <button
+      className={`${styles.searchButton} ${className}`}
+      {...defaultButtonProps}
+    >
       <DynamicIcon name="search" size={IconSize.MEDIUM} />
     </button>
   );
