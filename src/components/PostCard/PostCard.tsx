@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Tag } from "../Tag/Tag"; // Assuming Tag component path
 import styles from "./PostCard.module.scss";
 
