@@ -1,0 +1,86 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.card {
+  width: 31.4rem;
+  height: 42.5rem;
+  overflow: hidden;
+  border-radius: $spacing-medium;
+  background-color: $color-neutral-white;
+
+  @include shadow;
+  @include flex-column;
+}
+
+.image {
+  width: 100%;
+  height: 19.6rem;
+  object-fit: cover;
+}
+
+.content {
+  flex-grow: 1;
+  gap: $spacing-medium;
+  padding: $spacing-medium;
+
+  @include flex-column;
+}
+
+.body {
+  flex-grow: 1;
+  height: 11.4rem;
+  gap: $spacing-xsmall;
+
+  @include flex-column;
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: $border-radius-huge;
+  background-color: $color-secondary-medium;
+}
+
+.meta {
+  gap: $spacing-xsmall;
+
+  @include flex;
+
+  span {
+    color: $color-neutral-dark;
+    @include body-text(caption);
+  }
+}
+
+.title {
+  color: $color-neutral-darkest;
+
+  @include heading-style(h3);
+  @include truncate-lines(2);
+}
+
+.description {
+  color: $color-neutral-extra-dark;
+
+  @include body-text(small);
+
+  &.truncate1 {
+    @include truncate-line;
+  }
+
+  &.truncate2 {
+    @include truncate-lines(2);
+  }
+
+  &.truncate3 {
+    @include truncate-lines(3);
+  }
+}
+
+.tags {
+  flex-wrap: wrap;
+  margin-top: auto;
+  gap: $spacing-small;
+
+  @include flex;
+}

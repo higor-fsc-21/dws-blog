@@ -10,16 +10,16 @@
   transition: all 0.3s ease;
   @include mix.flex-center();
   padding-left: $spacing-medium;
+  background-color: transparent;
   color: $color-secondary-medium;
   border-radius: $border-radius-huge;
   @include mix.body-text("caption", "bold");
-  background-color: $color-neutral-lightest;
   border: 1px solid $color-secondary-medium;
 
   span {
-    max-width: 31.4rem; //
-    @include mix.truncate();
+    max-width: 31.4rem;
     @include mix.inherit-all();
+    @include mix.truncate-line();
   }
 
   & svg {

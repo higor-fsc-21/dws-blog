@@ -4,6 +4,7 @@ import { CategoryButton, MainButton, SortButton } from "./components/buttons";
 import { SearchBar } from "./components/SearchBar";
 import { Tag } from "./components/Tag";
 import { Dropdown, DropdownOptionType } from "./components/Dropdown";
+import { PostCard } from "./components/PostCard/PostCard";
 
 const categories: DropdownOptionType[] = [
   { id: 1, label: "Category 1" },
@@ -22,6 +23,27 @@ function App() {
   const [selectedCategories, setSelectedCategories] = useState<
     DropdownOptionType[]
   >([]);
+
+  const samplePost = {
+    imageUrl:
+      "https://thumbs.dreamstime.com/b/palmas-e-praia-tropical-com-areia-branca-136606345.jpg",
+    date: "Jan 20, 2024",
+    author: "Author Lastname",
+    title: "This is the title of the article with two lines",
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Donec sed faucibus sit id viverransectetur. Donec sed faucibus sit id viverra. Etiam dLorem ipsum dolor sit amet consectetur. Donec sed faucibus sit id viverra. Etiam d",
+    categories: ["Category 1", "Category 2"],
+  };
+  const samplePost2 = {
+    imageUrl:
+      "https://thumbs.dreamstime.com/b/palmas-e-praia-tropical-com-areia-branca-136606345.jpg",
+    date: "Jan 20, 2024",
+    author: "Author Lastname",
+    title: "This is the title",
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Donec sed faucibus sit id viverransectetur. Donec sed faucibus sit id viverra. Etiam dLorem ipsum dolor sit amet consectetur. Donec sed faucibus sit id viverra. Etiam d",
+    categories: ["Category 1", "Category 2"],
+  };
 
   return (
     <div className={styles.container}>
@@ -66,6 +88,24 @@ function App() {
           onOrderChange={(order) => console.log("order changed", order)}
         />
       </div>
+
+      <PostCard
+        imageUrl={samplePost.imageUrl}
+        date={samplePost.date}
+        author={samplePost.author}
+        title={samplePost.title}
+        description={samplePost.description}
+        categories={samplePost.categories}
+      />
+
+      <PostCard
+        imageUrl={samplePost2.imageUrl}
+        date={samplePost2.date}
+        author={samplePost2.author}
+        title={samplePost2.title}
+        description={samplePost2.description}
+        categories={samplePost2.categories}
+      />
     </div>
   );
 }

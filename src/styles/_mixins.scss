@@ -1,4 +1,4 @@
-@use "variables";
+@use "variables" as *;
 
 @mixin mobile {
   @media (max-width: 767px) {
@@ -36,51 +36,45 @@
 }
 
 @mixin heading-style($size) {
-  font-family: variables.$font-family-base;
-  font-weight: variables.$weight-bold;
-  line-height: variables.$line-height-heading;
+  font-family: $font-family-base;
+  font-weight: $weight-bold;
+  line-height: $line-height-heading;
 
   @if $size == "h1" {
-    font-size: variables.$font-size-h1;
+    font-size: $font-size-h1;
   } @else if $size == "h2" {
-    font-size: variables.$font-size-h2;
+    font-size: $font-size-h2;
   } @else if $size == "h3" {
-    font-size: variables.$font-size-h3;
+    font-size: $font-size-h3;
   }
 }
 
 @mixin body-text($size: "large", $weight: "regular") {
-  font-family: variables.$font-family-base;
-  line-height: variables.$line-height-body;
+  font-family: $font-family-base;
+  line-height: $line-height-body;
 
   @if $size == "large" {
-    font-size: variables.$font-size-body-large;
+    font-size: $font-size-body-large;
   } @else if $size == "small" {
-    font-size: variables.$font-size-body-small;
+    font-size: $font-size-body-small;
   } @else if $size == "caption" {
-    font-size: variables.$font-size-caption;
+    font-size: $font-size-caption;
   }
 
   @if $weight == "regular" {
-    font-weight: variables.$weight-regular;
+    font-weight: $weight-regular;
   } @else if $weight == "semibold" {
-    font-weight: variables.$weight-semibold;
+    font-weight: $weight-semibold;
   } @else if $weight == "bold" {
-    font-weight: variables.$weight-bold;
+    font-weight: $weight-bold;
   }
 }
 
-@mixin flex($direction: row, $justify: flex-start, $align: stretch) {
+@mixin flex($direction: row, $justify: flex-start, $align: center) {
   display: flex;
   align-items: $align;
   justify-content: $justify;
   flex-direction: $direction;
-}
-
-@mixin truncate {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 @mixin inherit-all {
@@ -90,4 +84,26 @@
   font-weight: inherit;
   line-height: inherit;
   background-color: transparent;
+}
+
+@mixin shadow {
+  box-shadow: 0 4px 8px rgba($color-neutral-darkest, 0.1);
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin truncate-line {
+  @include truncate;
+  white-space: nowrap;
+}
+
+@mixin truncate-lines($lines: 3) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+
+  @include truncate;
 }
