@@ -1,3 +1,9 @@
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/variables" as *;
+
 .mobileFilters {
-  padding: 10px;
+  @include flex;
+  gap: $spacing-xsmall;
+
+  flex-wrap: wrap;
 }
