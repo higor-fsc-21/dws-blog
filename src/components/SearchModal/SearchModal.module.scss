@@ -1,0 +1,57 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  margin: 0 $spacing-large;
+  transition: border 0.3s ease;
+  justify-content: space-between;
+  border-radius: $border-radius-huge;
+  border: 1px solid $color-accent-medium;
+}
+
+.modalContainer {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  position: absolute;
+  padding-top: $spacing-large;
+  background-color: $color-neutral-lightest;
+  border-top-left-radius: $border-radius-large;
+  border-top-right-radius: $border-radius-large;
+
+  @include flex(column, flex-start, unset);
+}
+
+.modalInput {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: $spacing-small 0;
+  background-color: transparent;
+  color: $color-neutral-extra-dark;
+
+  @include body-text;
+}
+
+.submitIcon,
+.closeIcon {
+  cursor: pointer;
+  margin: 0 $spacing-small;
+  color: $color-neutral-dark;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $color-accent-medium;
+  }
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid $color-neutral-extra-light;
+  margin: $spacing-medium 0;
+}

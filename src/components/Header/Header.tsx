@@ -6,6 +6,7 @@ import { SearchBar } from "../SearchBar";
 import { useApp } from "../../contexts/AppContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SearchModal } from "../SearchModal";
 
 const Header = () => {
   const { setSearch } = useApp();
@@ -13,6 +14,7 @@ const Header = () => {
   const { isMobile, isDesktop } = useResponsive();
 
   const [localSearch, setLocalSearch] = useState("");
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
 
   const handleSearch = () => {
     setSearch(localSearch);
@@ -20,20 +22,31 @@ const Header = () => {
   };
 
   return (
-    <header className={styles.header}>
-      <div className={styles.headerContent}>
-        <img className={styles.logo} alt="Dentsu World Services" src={logo} />
-        {isDesktop && (
-          <SearchBar
-            value={localSearch}
-            placeholder="Search"
-            onChange={setLocalSearch}
-            onSubmit={handleSearch}
-          />
-        )}
-        {isMobile && <SearchButton onClick={() => {}} />}
-      </div>
-    </header>
+    <>
+      <header className={styles.header}>
+        <div className={styles.headerContent}>
+          <img className={styles.logo} alt="Dentsu World Services" src={logo} />
+          {isDesktop && (
+            <SearchBar
+              value={localSearch}
+              placeholder="Search"
+              onChange={setLocalSearch}
+              onSubmit={handleSearch}
+            />
+          )}
+          {isMobile && (
+            <SearchButton onClick={() => setIsSearchModalOpen(true)} />
+          )}
+        </div>
+      </header>
+
+      <SearchModal
+        onSubmit={handleSearch}
+        onChange={setLocalSearch}
+        isOpen={isSearchModalOpen}
+        onClose={() => setIsSearchModalOpen(false)}
+      />
+    </>
   );
 };
 
