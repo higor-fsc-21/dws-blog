@@ -3,14 +3,9 @@
 
 .container {
   flex-wrap: wrap;
-  overflow-y: scroll;
   gap: $spacing-medium;
-  height: calc(100vh - 15.3rem);
   padding-bottom: $spacing-large;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
   @include mix.flex;
+  @include mix.overflow-scroll(calc(100vh - 15.3rem));
 }

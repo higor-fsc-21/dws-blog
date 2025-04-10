@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MainButton } from "../../../../components/buttons/MainButton";
+import FilterSection from "./FilterSection";
 import styles from "./DesktopFilters.module.scss";
 import { SlidersHorizontal } from "lucide-react";
 
@@ -22,8 +23,8 @@ const authorOptions = [
 ];
 
 const DesktopFilters: React.FC = () => {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedAuthors, setSelectedAuthors] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const handleCategoryClick = (category: string) => {
     if (selectedCategories.includes(category)) {
@@ -44,7 +45,6 @@ const DesktopFilters: React.FC = () => {
   };
 
   const handleApplyFilters = () => {
-    // Implement filter application logic here
     console.log("Applied filters:", { selectedCategories, selectedAuthors });
   };
 
@@ -55,39 +55,19 @@ const DesktopFilters: React.FC = () => {
         <span>Filters</span>
       </h2>
 
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Category</h3>
-        <ul className={styles.optionsList}>
-          {categoryOptions.map((category, index) => (
-            <li
-              key={index}
-              className={`${styles.optionItem} ${
-                selectedCategories.includes(category) ? styles.selected : ""
-              }`}
-              onClick={() => handleCategoryClick(category)}
-            >
-              {category}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <FilterSection
+        title="Category"
+        options={categoryOptions}
+        selectedOptions={selectedCategories}
+        onOptionClick={handleCategoryClick}
+      />
 
-      <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Author</h3>
-        <ul className={styles.optionsList}>
-          {authorOptions.map((author, index) => (
-            <li
-              key={index}
-              className={`${styles.optionItem} ${
-                selectedAuthors.includes(author) ? styles.selected : ""
-              }`}
-              onClick={() => handleAuthorClick(author)}
-            >
-              {author}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <FilterSection
+        title="Author"
+        options={authorOptions}
+        selectedOptions={selectedAuthors}
+        onOptionClick={handleAuthorClick}
+      />
 
       <MainButton fullWidth variant="primary" onClick={handleApplyFilters}>
         Apply filters

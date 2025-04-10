@@ -23,33 +23,3 @@
     @include inherit-all;
   }
 }
-
-.section {
-  margin-bottom: $spacing-medium;
-}
-
-.sectionTitle {
-  color: $color-neutral-darkest;
-  margin-bottom: $spacing-xxsmall;
-
-  @include body-text;
-}
-
-.optionsList {
-  list-style: none;
-}
-
-.optionItem {
-  cursor: pointer;
-  padding: $spacing-xsmall;
-  transition: all 0.2s ease;
-  color: $color-neutral-dark;
-  border-bottom: 1px solid $color-neutral-extra-light;
-
-  @include body-text(small);
-
-  &:hover,
-  &.selected {
-    color: $color-secondary-medium;
-  }
-}

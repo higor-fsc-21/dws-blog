@@ -2,7 +2,9 @@
 @use "../../styles/mixins" as mix;
 
 .content {
+  top: 20rem;
   display: flex;
+  position: sticky;
   gap: $spacing-large;
 
   @include mix.mobile {
