@@ -7,5 +7,5 @@
   padding-bottom: $spacing-large;
 
   @include mix.flex;
-  @include mix.overflow-scroll(calc(100vh - 15.3rem));
+  @include mix.scrollbar-y;
 }

@@ -5,13 +5,15 @@
   top: 20rem;
   display: flex;
   position: sticky;
-  gap: $spacing-large;
 
   @include mix.mobile {
     flex-direction: column;
+    height: calc(100vh - 9rem);
   }
 
   @include mix.desktop {
+    gap: $spacing-large;
     flex-direction: row;
+    height: calc(100vh - 20rem);
   }
 }

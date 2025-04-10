@@ -3,8 +3,10 @@
 
 .container {
   position: relative;
+  height: calc(100vh - 11rem);
   padding-top: $spacing-xlarge;
 
+  @include scrollbar-y;
   @include custom-breakpoint(1300px) {
     padding-top: $spacing-medium;
   }
@@ -13,17 +15,20 @@
 .content {
   margin: 0 auto;
   max-width: 100rem;
-  padding: $spacing-large 0;
+  padding: $spacing-large 0 0 0;
+
+  @include desktop {
+    margin-top: -6rem;
+  }
 }
 
 .backButton {
-  position: absolute;
-  top: $spacing-xlarge;
+  top: 0;
+  position: sticky;
 
   @include custom-breakpoint(1300px) {
     top: 0;
     position: relative;
-    margin-bottom: $spacing-large;
   }
 }
 

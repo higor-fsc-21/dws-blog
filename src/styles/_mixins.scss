@@ -108,9 +108,8 @@
   @include truncate;
 }
 
-@mixin overflow-scroll($content-height: 100vh) {
+@mixin scrollbar-y {
   overflow-y: scroll;
-  height: $content-height;
 
   &::-webkit-scrollbar {
     display: none;
