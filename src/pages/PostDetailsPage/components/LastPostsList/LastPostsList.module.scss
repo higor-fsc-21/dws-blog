@@ -1,3 +1,19 @@
-.lastPostsList {
-  padding: 10px;
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+
+.container {
+  gap: $spacing-medium;
+  @include flex-column;
+}
+
+.title {
+  @include heading-style(h3);
+  font-weight: $weight-regular;
+  color: $color-neutral-darkest;
+}
+
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-medium;
 }

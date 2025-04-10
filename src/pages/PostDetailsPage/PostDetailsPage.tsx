@@ -17,6 +17,7 @@ const PostDetailsPage: React.FC = () => {
 
       <div className={styles.content}>
         <PostContent />
+        <hr className={styles.divider} />
         <LastPostsList />
       </div>
     </div>
