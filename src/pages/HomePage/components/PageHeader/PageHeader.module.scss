@@ -1,3 +1,11 @@
-.pageHeader {
-  padding: 10px;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/variables" as *;
+
+.container {
+  padding: $spacing-xlarge 0;
+  @include flex(row, space-between, flex-end);
+}
+
+.title {
+  @include heading-style(h2);
 }
