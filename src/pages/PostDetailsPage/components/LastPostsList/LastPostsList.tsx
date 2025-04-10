@@ -1,7 +1,5 @@
-import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { PostCard } from "../../../../components/PostCard/PostCard";
-import { useLastUserPosts } from "../../../../hooks/useLastUserPosts";
 import { Post } from "../../../../types/api";
 import styles from "./LastPostsList.module.scss";
 
@@ -11,16 +9,6 @@ interface LastPostsListProps {
 
 const LastPostsList = ({ posts }: LastPostsListProps) => {
   const navigate = useNavigate();
-
-  const { getLastUserPosts } = useLastUserPosts(posts);
-
-  const handlePostClick = useCallback(
-    (post: Post) => {
-      const lastPosts = getLastUserPosts(post.author, post.id);
-      navigate(`/post/${post.id}`, { state: { post, lastPosts } });
-    },
-    [navigate, getLastUserPosts]
-  );
 
   if (!posts?.length) return null;
 
@@ -35,9 +23,9 @@ const LastPostsList = ({ posts }: LastPostsListProps) => {
             author={post.author.name}
             description={post.content}
             imageUrl={post.thumbnail_url}
-            onPostClick={() => handlePostClick(post)}
-            date={new Date(post.createdAt).toLocaleDateString()}
+            onPostClick={() => navigate(`/post/${post.id}`)}
             categories={post.categories.map((cat) => cat.name)}
+            date={new Date(post.createdAt).toLocaleDateString()}
           />
         ))}
       </div>
