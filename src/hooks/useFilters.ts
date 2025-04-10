@@ -23,20 +23,21 @@ export const useFilters = ({ onApplyFilters }: UseFiltersProps = {}) => {
   const { data: categoriesData, isLoading: isLoadingCategories } =
     useFetchCategories();
 
-  const categoryOptions: FilterOption[] = useMemo(
-    () =>
-      categoriesData?.map((cat: Category) => ({
-        id: cat.id,
-        label: cat.name,
-      })) || [],
-    [categoriesData]
-  );
-  const authorOptions: FilterOption[] = useMemo(
-    () =>
-      authorsData?.map((auth: Author) => ({ id: auth.id, label: auth.name })) ||
-      [],
-    [authorsData]
-  );
+  const categoryOptions: FilterOption[] = useMemo(() => {
+    if (!categoriesData?.length) return [];
+    return categoriesData.map((cat: Category) => ({
+      id: cat.id,
+      label: cat.name,
+    }));
+  }, [categoriesData]);
+
+  const authorOptions: FilterOption[] = useMemo(() => {
+    if (!authorsData?.length) return [];
+    return authorsData.map((auth: Author) => ({
+      id: auth.id,
+      label: auth.name,
+    }));
+  }, [authorsData]);
 
   const applyFilters = useCallback(() => {
     onApplyFilters?.({
