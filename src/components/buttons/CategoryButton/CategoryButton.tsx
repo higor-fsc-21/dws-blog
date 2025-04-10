@@ -30,7 +30,11 @@ export const CategoryButton = ({
   }, [selectedCategories]);
 
   return (
-    <button className={buttonClasses} {...defaultButtonProps}>
+    <button
+      className={buttonClasses}
+      data-testid="category-button"
+      {...defaultButtonProps}
+    >
       <span>{label}</span>
 
       <DynamicIcon

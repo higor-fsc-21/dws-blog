@@ -45,7 +45,7 @@ const PostCardComponent = ({
 
       setDescriptionClass(`${styles.description} ${truncateClass}`);
     }
-  }, [title]);
+  }, []);
 
   return (
     <div className={styles.card} onClick={onPostClick}>

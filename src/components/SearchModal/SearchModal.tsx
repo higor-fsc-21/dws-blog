@@ -49,3 +49,5 @@ export const SearchModal = forwardRef<HTMLInputElement, SearchModalProps>(
     );
   }
 );
+
+SearchModal.displayName = "SearchModal";

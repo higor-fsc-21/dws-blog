@@ -1,8 +1,7 @@
-import { ReactNode } from "react";
 import styles from "./Tag.module.scss";
 
 interface TagProps {
-  children: ReactNode;
+  children: string;
 }
 
 export const Tag = ({ children }: TagProps) => {
