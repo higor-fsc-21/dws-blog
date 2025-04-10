@@ -14,11 +14,9 @@
 }
 
 .headerContent {
-  width: 100%;
-  margin: 0 auto;
-  max-width: 120rem;
   position: relative;
   gap: $spacing-large;
+  margin: 0 $spacing-xhuge;
 
   @include mix.flex(row, flex-end, center);
 }
