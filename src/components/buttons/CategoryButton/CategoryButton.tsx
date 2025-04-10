@@ -5,7 +5,7 @@ import { IconSize } from "../../../constants/icons";
 
 type AllowedHtmlButtonProps = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
-  "onClick"
+  "onClick" | "disabled"
 >;
 
 type CategoryButtonProps = AllowedHtmlButtonProps & {

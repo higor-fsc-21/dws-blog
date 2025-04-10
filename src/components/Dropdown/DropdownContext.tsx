@@ -1,25 +1,28 @@
 import { createContext, useCallback, useContext, useState } from "react";
-import { DropdownOptionType } from "./DropdownOption/DropdownOption";
+import { DropdownOption } from "./DropdownOption/DropdownOption";
 
 interface DropdownContextType {
   isOpen: boolean;
-  options: DropdownOptionType[];
-  selectedOptions: DropdownOptionType[];
-  toggleDropdown: () => void;
+  isLoading: boolean;
+  options: DropdownOption[];
+  selectedOptions: DropdownOption[];
   closeDropdown: () => void;
-  handleOptionSelect: (option: DropdownOptionType) => void;
+  toggleDropdown: () => void;
+  handleOptionSelect: (option: DropdownOption) => void;
 }
 
 const DropdownContext = createContext<DropdownContextType | null>(null);
 
 interface DropdownProviderProps {
+  isLoading: boolean;
   children: React.ReactNode;
-  options: DropdownOptionType[];
-  selectedOptions: DropdownOptionType[];
-  onChange: (selected: DropdownOptionType[]) => void;
+  options: DropdownOption[];
+  selectedOptions: DropdownOption[];
+  onChange: (selected: DropdownOption[]) => void;
 }
 
 export const DropdownProvider = ({
+  isLoading,
   children,
   options,
   selectedOptions,
@@ -36,9 +39,9 @@ export const DropdownProvider = ({
   }, []);
 
   const handleOptionSelect = useCallback(
-    (option: DropdownOptionType) => {
+    (option: DropdownOption) => {
       const isSelected = selectedOptions.some((item) => item.id === option.id);
-      let newSelected: DropdownOptionType[];
+      let newSelected: DropdownOption[];
 
       if (isSelected) {
         newSelected = selectedOptions.filter((item) => item.id !== option.id);
@@ -54,9 +57,10 @@ export const DropdownProvider = ({
   const value = {
     isOpen,
     options,
-    selectedOptions,
-    toggleDropdown,
+    isLoading,
     closeDropdown,
+    toggleDropdown,
+    selectedOptions,
     handleOptionSelect,
   };
 

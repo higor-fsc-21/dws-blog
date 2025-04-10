@@ -1,52 +1,59 @@
-import React, { useState } from "react";
+import React, { useCallback } from "react";
 import { MainButton } from "../../../../components/buttons/MainButton";
 import FilterSection from "./FilterSection";
 import styles from "./DesktopFilters.module.scss";
 import { SlidersHorizontal } from "lucide-react";
+import { useFilters } from "../../../../hooks/useFilters";
+import { FilterOption } from "../../../../types/app";
 
 const FILTER_ICON_SIZE = 20;
 
-const categoryOptions = [
-  "Category 1",
-  "Category 2",
-  "Category 3",
-  "Category 4",
-  "Category 5",
-];
+const toggleOption = (
+  option: FilterOption,
+  currentSelection: FilterOption[],
+  setter: React.Dispatch<React.SetStateAction<FilterOption[]>>
+) => {
+  const index = currentSelection.findIndex((item) => item.id === option.id);
+  if (index > -1) {
+    setter(currentSelection.filter((item) => item.id !== option.id));
+  } else {
+    setter([...currentSelection, option]);
+  }
+};
 
-const authorOptions = [
-  "Author Lastname",
-  "Author Lastname",
-  "Author Lastname",
-  "Author Lastname",
-  "Author Lastname",
-];
+interface DesktopFiltersProps {
+  onApplyFilters: (filters: {
+    categories: string[];
+    authors: string[];
+  }) => void;
+}
 
-const DesktopFilters: React.FC = () => {
-  const [selectedAuthors, setSelectedAuthors] = useState<string[]>([]);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+const DesktopFilters: React.FC<DesktopFiltersProps> = ({ onApplyFilters }) => {
+  const {
+    isLoadingCategories,
+    isLoadingAuthors,
+    categoryOptions,
+    authorOptions,
+    selectedCategoryOptions,
+    selectedAuthorOptions,
+    setSelectedAuthorOptions,
+    setSelectedCategoryOptions,
+    applyFilters,
+  } = useFilters({ onApplyFilters });
 
-  const handleCategoryClick = (category: string) => {
-    if (selectedCategories.includes(category)) {
-      setSelectedCategories(
-        selectedCategories.filter((cat) => cat !== category)
-      );
-    } else {
-      setSelectedCategories([...selectedCategories, category]);
-    }
-  };
+  const handleCategorySelect = useCallback(
+    (option: FilterOption) => {
+      toggleOption(option, selectedCategoryOptions, setSelectedCategoryOptions);
+    },
+    [selectedCategoryOptions, setSelectedCategoryOptions]
+  );
 
-  const handleAuthorClick = (author: string) => {
-    if (selectedAuthors.includes(author)) {
-      setSelectedAuthors(selectedAuthors.filter((auth) => auth !== author));
-    } else {
-      setSelectedAuthors([...selectedAuthors, author]);
-    }
-  };
-
-  const handleApplyFilters = () => {
-    console.log("Applied filters:", { selectedCategories, selectedAuthors });
-  };
+  const handleAuthorSelect = useCallback(
+    (option: FilterOption) => {
+      toggleOption(option, selectedAuthorOptions, setSelectedAuthorOptions);
+    },
+    [selectedAuthorOptions, setSelectedAuthorOptions]
+  );
 
   return (
     <div className={styles.container}>
@@ -58,18 +65,20 @@ const DesktopFilters: React.FC = () => {
       <FilterSection
         title="Category"
         options={categoryOptions}
-        selectedOptions={selectedCategories}
-        onOptionClick={handleCategoryClick}
+        isLoading={isLoadingCategories}
+        selectedOptions={selectedCategoryOptions}
+        onOptionClick={handleCategorySelect}
       />
 
       <FilterSection
         title="Author"
         options={authorOptions}
-        selectedOptions={selectedAuthors}
-        onOptionClick={handleAuthorClick}
+        isLoading={isLoadingAuthors}
+        selectedOptions={selectedAuthorOptions}
+        onOptionClick={handleAuthorSelect}
       />
 
-      <MainButton fullWidth variant="primary" onClick={handleApplyFilters}>
+      <MainButton fullWidth variant="primary" onClick={applyFilters}>
         Apply filters
       </MainButton>
     </div>

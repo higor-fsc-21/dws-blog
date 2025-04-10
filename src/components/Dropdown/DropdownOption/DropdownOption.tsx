@@ -1,13 +1,11 @@
 import styles from "./DropdownOption.module.scss";
 import { useDropdown } from "../DropdownContext";
+import { FilterOption } from "../../../types/app";
 
-export interface DropdownOptionType {
-  id: string | number;
-  label: string;
-}
+export type DropdownOption = FilterOption;
 
 interface DropdownOptionProps {
-  option: DropdownOptionType;
+  option: DropdownOption;
 }
 
 export const DropdownOption = ({ option }: DropdownOptionProps) => {
