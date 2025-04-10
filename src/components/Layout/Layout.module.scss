@@ -1,5 +1,5 @@
 @use "../../styles/variables" as *;
-@use "../../styles/mixins" as mix;
+@use "../../styles/mixins" as *;
 
 .layout {
   min-height: 100vh;
@@ -15,4 +15,8 @@
 .main {
   margin: 0 $spacing-xhuge;
   padding: 0 $spacing-medium;
+
+  @include mobile {
+    margin: 0;
+  }
 }

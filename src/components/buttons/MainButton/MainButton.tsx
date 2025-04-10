@@ -10,6 +10,7 @@ type AllowedHtmlButtonProps = Omit<
 
 type MainButtonProps = AllowedHtmlButtonProps & {
   icon?: IconName;
+  className?: string;
   fullWidth?: boolean;
   variant?: "primary" | "secondary";
 };
@@ -17,13 +18,14 @@ type MainButtonProps = AllowedHtmlButtonProps & {
 export const MainButton = ({
   icon,
   children,
+  className,
   fullWidth = false,
   variant = "primary",
   ...defaultButtonProps
 }: MainButtonProps) => {
   const buttonClasses = `${styles.button} ${styles[variant]} ${
     fullWidth ? styles.fullWidth : ""
-  }`;
+  } ${className}`;
 
   return (
     <button className={buttonClasses} {...defaultButtonProps}>

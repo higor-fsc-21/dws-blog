@@ -19,6 +19,10 @@
   margin: 0 $spacing-xhuge;
 
   @include mix.flex(row, flex-end, center);
+
+  @include mix.mobile {
+    margin: 0;
+  }
 }
 
 .logo {
@@ -26,5 +30,6 @@
   width: 24rem;
   position: absolute;
   color: $color-primary-medium;
+
   @include mix.heading-style(h3);
 }
