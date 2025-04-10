@@ -20,3 +20,8 @@ export const fetchCategories = async (): Promise<Category[]> => {
   const response = await api.get<Category[]>("/categories/");
   return response.data;
 };
+
+export const getPostsByIds = async (postIds: string[]): Promise<Post[]> => {
+  const response = await Promise.all(postIds.map((id) => fetchPostById(id)));
+  return response.map((post) => post);
+};

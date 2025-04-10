@@ -9,6 +9,7 @@ import { useFetchPost } from "../../hooks/queries";
 const PostDetailsPage: React.FC = () => {
   const navigate = useNavigate();
   const { postId } = useParams<{ postId: string }>();
+
   const { data: post, isLoading, isError } = useFetchPost(postId!);
 
   if (isLoading) {
