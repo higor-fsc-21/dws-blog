@@ -1,3 +1,55 @@
-.desktopFilters {
-  padding: 10px;
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+
+.container {
+  min-width: 30rem;
+  height: fit-content;
+  padding: $spacing-medium;
+  border-radius: $border-radius-large;
+  background-color: $color-neutral-white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.header {
+  font-size: 2.6rem;
+  gap: $spacing-small;
+  font-weight: $weight-regular;
+  color: $color-neutral-darkest;
+  margin-bottom: $spacing-medium;
+
+  @include flex;
+
+  & span {
+    @include inherit-all;
+  }
+}
+
+.section {
+  margin-bottom: $spacing-medium;
+}
+
+.sectionTitle {
+  color: $color-neutral-darkest;
+  margin-bottom: $spacing-xxsmall;
+
+  @include body-text;
+}
+
+.optionsList {
+  list-style: none;
+}
+
+.optionItem {
+  cursor: pointer;
+  padding: $spacing-xsmall;
+  transition: all 0.2s ease;
+  color: $color-neutral-dark;
+  border-bottom: 1px solid $color-neutral-extra-light;
+
+  @include body-text(small);
+
+  &:hover,
+  &.selected {
+    color: $color-secondary-medium;
+  }
 }

@@ -1,16 +1,24 @@
 import React from "react";
 import useResponsive from "../../hooks/useResponsive";
 import styles from "./HomePage.module.scss";
-import { PageHeader, PostsList, MobileFilters } from "./components";
+import {
+  PageHeader,
+  PostsList,
+  MobileFilters,
+  DesktopFilters,
+} from "./components";
 
 const HomePage: React.FC = () => {
   const { isMobile, isDesktop } = useResponsive();
 
   return (
-    <div className={styles.container}>
+    <div>
       {isDesktop && <PageHeader />}
-      {isMobile && <MobileFilters />}
-      <PostsList />
+      <div className={styles.content}>
+        {isMobile && <MobileFilters />}
+        {isDesktop && <DesktopFilters />}
+        <PostsList />
+      </div>
     </div>
   );
 };

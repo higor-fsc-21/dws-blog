@@ -1,6 +1,15 @@
-@use "../../styles/mixins" as mix;
 @use "../../styles/variables" as *;
+@use "../../styles/mixins" as mix;
 
-.container {
-  @include mix.flex-column;
+.content {
+  display: flex;
+  gap: $spacing-large;
+
+  @include mix.mobile {
+    flex-direction: column;
+  }
+
+  @include mix.desktop {
+    flex-direction: row;
+  }
 }
