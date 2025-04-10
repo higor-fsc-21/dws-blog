@@ -1,10 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import { HomePage, PostDetailsPage } from "./pages";
+import { queryClient } from "./config/reactQuery";
 import { AppProvider } from "./contexts/AppContext";
-
-const queryClient = new QueryClient();
+import { HomePage, PostDetailsPage } from "./pages";
 
 function App() {
   return (
