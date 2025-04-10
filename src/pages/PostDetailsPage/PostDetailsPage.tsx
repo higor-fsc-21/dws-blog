@@ -1,16 +1,16 @@
-import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { MainButton } from "../../components/buttons";
+import { useFetchPost } from "../../hooks/queries";
 import LastPostsList from "./components/LastPostsList";
 import PostContent from "./components/PostContent";
 import styles from "./PostDetailsPage.module.scss";
-import { MainButton } from "../../components/buttons";
-import { useNavigate, useParams } from "react-router-dom";
-import { useFetchPost } from "../../hooks/queries";
 
-const PostDetailsPage: React.FC = () => {
+const PostDetailsPage = () => {
   const navigate = useNavigate();
   const { postId } = useParams<{ postId: string }>();
 
-  const { data: post, isLoading, isError } = useFetchPost(postId!);
+  const { data, isLoading, isError } = useFetchPost(postId!);
+  const { post, lastPosts } = data || {};
 
   if (isLoading) {
     return <div className={styles.container}>Loading...</div>;
@@ -41,7 +41,7 @@ const PostDetailsPage: React.FC = () => {
       <div className={styles.content}>
         <PostContent post={post} />
         <hr className={styles.divider} />
-        <LastPostsList />
+        <LastPostsList posts={lastPosts || []} />
       </div>
     </div>
   );

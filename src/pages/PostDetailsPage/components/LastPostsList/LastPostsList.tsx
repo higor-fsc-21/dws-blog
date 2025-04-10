@@ -1,16 +1,16 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { PostCard } from "../../../../components/PostCard/PostCard";
-import styles from "./LastPostsList.module.scss";
-import { Post } from "../../../../types/api";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { PostCard } from "../../../../components/PostCard/PostCard";
 import { useLastUserPosts } from "../../../../hooks/useLastUserPosts";
+import { Post } from "../../../../types/api";
+import styles from "./LastPostsList.module.scss";
 
-const LastPostsList = () => {
+interface LastPostsListProps {
+  posts: Post[];
+}
+
+const LastPostsList = ({ posts }: LastPostsListProps) => {
   const navigate = useNavigate();
-  const { state } = useLocation();
-
-  const typedState = state as { lastPosts: Post[] };
-  const posts = typedState?.lastPosts || [];
 
   const { getLastUserPosts } = useLastUserPosts(posts);
 
