@@ -5,12 +5,19 @@ import { SearchButton } from "../buttons";
 import { SearchBar } from "../SearchBar";
 import { useApp } from "../../contexts/AppContext";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { setSearch } = useApp();
+  const navigate = useNavigate();
   const { isMobile, isDesktop } = useResponsive();
 
   const [localSearch, setLocalSearch] = useState("");
+
+  const handleSearch = () => {
+    setSearch(localSearch);
+    navigate("/");
+  };
 
   return (
     <header className={styles.header}>
@@ -21,7 +28,7 @@ const Header = () => {
             value={localSearch}
             placeholder="Search"
             onChange={setLocalSearch}
-            onSubmit={() => setSearch(localSearch)}
+            onSubmit={handleSearch}
           />
         )}
         {isMobile && <SearchButton onClick={() => {}} />}
