@@ -10,6 +10,7 @@ import {
   PageHeader,
   PostsList,
 } from "./components";
+import { useApp } from "../../contexts/AppContext";
 
 const sortPostsByOrder = (posts: Post[], order: "newest" | "oldest") => {
   return posts.sort((a, b) => {
@@ -22,6 +23,7 @@ const sortPostsByOrder = (posts: Post[], order: "newest" | "oldest") => {
 };
 
 const HomePage: React.FC = () => {
+  const { search } = useApp();
   const { isMobile, isDesktop } = useResponsive();
   const { data, isLoading, isError } = useFetchPosts();
 
@@ -35,7 +37,7 @@ const HomePage: React.FC = () => {
     if (!data) return [];
     const { authorsIds, categoriesIds, order } = appliedFilters;
 
-    if (!authorsIds?.length && !categoriesIds?.length)
+    if (!authorsIds?.length && !categoriesIds?.length && !search)
       return sortPostsByOrder(data, order ?? "newest");
 
     const filteredPosts = data.filter((post) => {
@@ -44,12 +46,16 @@ const HomePage: React.FC = () => {
       const matchesCategory =
         !categoriesIds?.length ||
         post.categories.some((category) => categoriesIds.includes(category.id));
+      const matchesSearch =
+        !search ||
+        post.title.toLowerCase().includes(search.toLowerCase()) ||
+        post.content.toLowerCase().includes(search.toLowerCase());
 
-      return matchesAuthor && matchesCategory;
+      return matchesAuthor && matchesCategory && matchesSearch;
     });
 
     return sortPostsByOrder(filteredPosts, order ?? "newest");
-  }, [data, appliedFilters]);
+  }, [data, search, appliedFilters]);
 
   return (
     <div>

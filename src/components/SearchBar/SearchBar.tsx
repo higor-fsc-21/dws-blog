@@ -1,32 +1,23 @@
-import { InputHTMLAttributes, forwardRef, useRef, useState } from "react";
+import { InputHTMLAttributes, forwardRef } from "react";
 import { SearchButton } from "../buttons";
 import styles from "./SearchBar.module.scss";
 
 type SearchBarProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  "size" | "onChange" | "onSearch"
+  "onChange"
 > & {
-  onSearch?: (value: string) => void;
-  isMobileView?: boolean;
+  onSubmit?: () => void;
+  onChange?: (value: string) => void;
 };
 
 export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
-  ({ onSearch, isMobileView = true, ...props }, ref) => {
-    const inputRef = useRef<HTMLInputElement>(null);
+  ({ onSubmit, onChange, ...props }, ref) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange?.(e.target.value);
+    };
 
-    const [isVisible, setIsVisible] = useState(false);
-
-    const isSearchVisible = isMobileView || isVisible;
-    const visibilityClass = isSearchVisible ? "" : styles.hidden;
-
-    const hideSearchBar = () => setIsVisible(false);
-    const showSearchBar = () => setIsVisible(true);
-
-    const handleSearch = () => {
-      if (!isSearchVisible) return showSearchBar();
-
-      hideSearchBar();
-      onSearch?.(inputRef.current?.value ?? "");
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") onSubmit?.();
     };
 
     return (
@@ -34,11 +25,12 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
         <input
           ref={ref}
           type="text"
-          onBlur={hideSearchBar}
-          className={`${styles.searchBar} ${visibilityClass}`}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          className={styles.searchBar}
           {...props}
         />
-        <SearchButton onClick={handleSearch} className={styles.button} />
+        <SearchButton onClick={onSubmit} className={styles.button} />
       </div>
     );
   }

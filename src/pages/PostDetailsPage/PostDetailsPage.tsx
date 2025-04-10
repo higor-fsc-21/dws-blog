@@ -7,7 +7,7 @@ import styles from "./PostDetailsPage.module.scss";
 
 const PostDetailsPage = () => {
   const navigate = useNavigate();
-  const { postId } = useParams<{ postId: string }>();
+  const { id: postId } = useParams<{ id: string }>();
 
   const { data, isLoading, isError } = useFetchPost(postId!);
   const { post, lastPosts } = data || {};

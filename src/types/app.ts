@@ -4,7 +4,6 @@ export interface FilterOption {
 }
 
 export interface AppliedFilters {
-  search?: string;
   authorsIds?: string[];
   categoriesIds?: string[];
   order?: "newest" | "oldest";
