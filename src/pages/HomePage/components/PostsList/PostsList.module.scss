@@ -1,3 +1,9 @@
-.postsList {
-  padding: 10px;
+@use "../../../../styles/mixins" as mix;
+@use "../../../../styles/variables" as *;
+
+.container {
+  flex-wrap: wrap;
+  gap: $spacing-medium;
+
+  @include mix.flex;
 }

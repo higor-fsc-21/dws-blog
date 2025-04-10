@@ -2,8 +2,11 @@
 @use "../../../../styles/variables" as *;
 
 .mobileFilters {
-  @include flex;
-  gap: $spacing-xsmall;
-
+  top: 9rem;
   flex-wrap: wrap;
+  position: sticky;
+  gap: $spacing-xsmall;
+  padding: $spacing-medium 0;
+
+  @include flex;
 }

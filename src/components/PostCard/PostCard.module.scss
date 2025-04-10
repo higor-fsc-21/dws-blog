@@ -2,8 +2,10 @@
 @use "../../styles/mixins" as *;
 
 .card {
-  width: 31.4rem;
+  width: 100%;
+  flex: 1 1 30rem;
   height: 42.5rem;
+  min-width: 30rem;
   overflow: hidden;
   border-radius: $spacing-medium;
   background-color: $color-neutral-white;
