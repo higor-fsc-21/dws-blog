@@ -1,4 +1,4 @@
-@use "../../../../styles/mixins" as mix;
+@use "../../../../styles/mixins" as *;
 @use "../../../../styles/variables" as *;
 
 .container {
@@ -6,6 +6,22 @@
   gap: $spacing-medium;
   padding-bottom: $spacing-large;
 
-  @include mix.flex;
-  @include mix.scrollbar-y;
+  @include flex;
+  @include scrollbar-y;
+}
+
+.loading,
+.error,
+.empty {
+  width: 100%;
+  min-height: 20rem;
+  padding: $spacing-large;
+  color: $color-neutral-dark;
+
+  @include flex-center;
+  @include body-text(small);
+}
+
+.error {
+  color: $color-accent-medium;
 }
