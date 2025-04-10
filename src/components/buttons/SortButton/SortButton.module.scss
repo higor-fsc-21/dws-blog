@@ -11,7 +11,7 @@
   @include mix.flex-center();
   transition: all 0.2s ease-in-out;
   border-radius: $border-radius-huge;
-  @include mix.body-text("large", "regular");
+  @include mix.body-text("small", "regular");
 
   & svg {
     stroke: $color-accent-medium;
@@ -19,19 +19,23 @@
   }
 
   .text {
+    font-size: inherit;
+    white-space: nowrap;
     background-color: transparent;
     color: $color-neutral-extra-dark;
   }
 
-  &:hover {
-    background-color: $color-accent-medium;
+  @include mix.desktop {
+    &:hover {
+      background-color: $color-accent-medium;
 
-    .text {
-      color: $color-neutral-extra-light;
-    }
+      .text {
+        color: $color-neutral-extra-light;
+      }
 
-    & svg {
-      stroke: $color-neutral-extra-light;
+      & svg {
+        stroke: $color-neutral-extra-light;
+      }
     }
   }
 }
