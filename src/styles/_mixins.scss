@@ -12,6 +12,12 @@
   }
 }
 
+@mixin custom-breakpoint($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
 @mixin flex-center {
   display: flex;
   align-items: center;

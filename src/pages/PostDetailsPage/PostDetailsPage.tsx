@@ -1,7 +1,26 @@
 import React from "react";
+import LastPostsList from "./components/LastPostsList";
+import PostContent from "./components/PostContent";
+import styles from "./PostDetailsPage.module.scss";
+import { MainButton } from "../../components/buttons";
 
-const PostDetailPage: React.FC = () => {
-  return <div>Post Detail Page</div>;
+const PostDetailsPage: React.FC = () => {
+  return (
+    <div className={styles.container}>
+      <MainButton
+        icon="arrow-left"
+        variant="secondary"
+        className={styles.backButton}
+      >
+        Back
+      </MainButton>
+
+      <div className={styles.content}>
+        <PostContent />
+        <LastPostsList />
+      </div>
+    </div>
+  );
 };
 
-export default PostDetailPage;
+export default PostDetailsPage;
