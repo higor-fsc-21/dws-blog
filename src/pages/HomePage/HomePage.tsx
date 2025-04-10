@@ -22,7 +22,7 @@ const sortPostsByOrder = (posts: Post[], order: "newest" | "oldest") => {
   });
 };
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   const { search } = useApp();
   const { isMobile, isDesktop } = useResponsive();
   const { data, isLoading, isError } = useFetchPosts();

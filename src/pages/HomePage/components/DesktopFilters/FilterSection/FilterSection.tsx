@@ -1,6 +1,5 @@
-import React from "react";
-import styles from "./FilterSection.module.scss";
 import { FilterOption } from "../../../../../types/app";
+import styles from "./FilterSection.module.scss";
 
 interface FilterSectionProps {
   title: string;
@@ -10,13 +9,13 @@ interface FilterSectionProps {
   isLoading?: boolean;
 }
 
-const FilterSection: React.FC<FilterSectionProps> = ({
+const FilterSection = ({
   title,
   options,
   selectedOptions,
   onOptionClick,
   isLoading = false,
-}) => {
+}: FilterSectionProps) => {
   if (isLoading) {
     return (
       <div className={styles.section}>

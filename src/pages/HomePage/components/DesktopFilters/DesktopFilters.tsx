@@ -25,7 +25,7 @@ interface DesktopFiltersProps {
   onApplyFilters: (filters: Partial<AppliedFilters>) => void;
 }
 
-const DesktopFilters: React.FC<DesktopFiltersProps> = ({ onApplyFilters }) => {
+const DesktopFilters = ({ onApplyFilters }: DesktopFiltersProps) => {
   const {
     isLoadingCategories,
     isLoadingAuthors,

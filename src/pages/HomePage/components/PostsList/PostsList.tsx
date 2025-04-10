@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { PostCard } from "../../../../components/PostCard/PostCard";
 import { Category, Post } from "../../../../types/api";
@@ -10,7 +9,7 @@ interface PostsListProps {
   posts: Post[] | undefined;
 }
 
-const PostsList: React.FC<PostsListProps> = ({ posts, isLoading, isError }) => {
+const PostsList = ({ posts, isLoading, isError }: PostsListProps) => {
   const navigate = useNavigate();
 
   if (isLoading) return <div className={styles.loading}>Loading posts...</div>;

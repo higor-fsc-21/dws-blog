@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Tag } from "../Tag/Tag"; // Assuming Tag component path
 import styles from "./PostCard.module.scss";
 
@@ -14,7 +14,7 @@ interface PostCardProps {
   onPostClick?: () => void;
 }
 
-export const PostCard: React.FC<PostCardProps> = ({
+export const PostCard = ({
   date,
   title,
   author,
@@ -22,7 +22,7 @@ export const PostCard: React.FC<PostCardProps> = ({
   categories,
   description,
   onPostClick,
-}) => {
+}: PostCardProps) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [descriptionClass, setDescriptionClass] = useState(
     INITIAL_DESCRIPTION_CLASS

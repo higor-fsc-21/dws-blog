@@ -1,12 +1,11 @@
-import React from "react";
-import styles from "./PostContent.module.scss";
 import { Post } from "../../../../types/api";
+import styles from "./PostContent.module.scss";
 
 interface PostContentProps {
   post: Post;
 }
 
-const PostContent: React.FC<PostContentProps> = ({ post }) => {
+const PostContent = ({ post }: PostContentProps) => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>{post.title}</h1>
