@@ -1,3 +1,56 @@
-.postContent {
-  padding: 10px;
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+
+.container {
+}
+
+.title {
+  @include heading-style(h2);
+  margin-bottom: $spacing-medium;
+}
+
+.authorInfo {
+  margin-bottom: $spacing-large;
+  @include flex(row, flex-start, center);
+}
+
+.authorImage {
+  border-radius: 50%;
+  width: $spacing-huge;
+  height: $spacing-huge;
+  margin-right: $spacing-small;
+}
+
+.authorName {
+  font-weight: $weight-semibold;
+  color: $color-neutral-extra-dark;
+
+  @include body-text(small, semibold);
+
+  & span {
+    @include body-text(small, regular);
+  }
+}
+
+.date {
+  color: $color-neutral-dark;
+  @include body-text(small, regular);
+}
+
+.mainImage {
+  width: 100%;
+  height: auto;
+  max-height: 50rem;
+  object-fit: cover;
+  margin-bottom: $spacing-medium;
+  border-radius: $border-radius-small;
+
+  @include mobile {
+    max-height: 20rem;
+  }
+}
+
+.text p {
+  color: $color-neutral-dark;
+  @include body-text(small, regular);
 }
