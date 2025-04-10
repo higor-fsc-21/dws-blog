@@ -1,15 +1,15 @@
 import React, { useMemo, useState } from "react";
 import { useFetchPosts } from "../../hooks/queries";
 import useResponsive from "../../hooks/useResponsive";
+import { Post } from "../../types/api";
+import { AppliedFilters } from "../../types/app";
 import styles from "./HomePage.module.scss";
 import {
+  DesktopFilters,
+  MobileFilters,
   PageHeader,
   PostsList,
-  MobileFilters,
-  DesktopFilters,
 } from "./components";
-import { AppliedFilters } from "../../types/app";
-import { Post } from "../../types/api";
 
 const sortPostsByOrder = (posts: Post[], order: "newest" | "oldest") => {
   return posts.sort((a, b) => {

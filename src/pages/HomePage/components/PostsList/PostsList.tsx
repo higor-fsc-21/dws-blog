@@ -2,6 +2,7 @@ import React from "react";
 import { PostCard } from "../../../../components/PostCard/PostCard";
 import styles from "./PostsList.module.scss";
 import { Category, Post } from "../../../../types/api";
+import { useNavigate } from "react-router-dom";
 
 interface PostsListProps {
   isError: boolean;
@@ -10,6 +11,8 @@ interface PostsListProps {
 }
 
 const PostsList: React.FC<PostsListProps> = ({ posts, isLoading, isError }) => {
+  const navigate = useNavigate();
+
   if (isLoading) return <div className={styles.loading}>Loading posts...</div>;
   if (isError) return <div className={styles.error}>Error loading posts.</div>;
   if (!posts || posts.length === 0)
@@ -24,6 +27,7 @@ const PostsList: React.FC<PostsListProps> = ({ posts, isLoading, isError }) => {
           author={post.author.name}
           description={post.content}
           imageUrl={post.thumbnail_url}
+          onPostClick={() => navigate(`/post/${post.id}`)}
           date={new Date(post.createdAt).toLocaleDateString()}
           categories={post.categories.map((cat: Category) => cat.name)}
         />

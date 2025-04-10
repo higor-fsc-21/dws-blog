@@ -11,6 +11,7 @@ interface PostCardProps {
   imageUrl: string;
   description: string;
   categories: string[];
+  onPostClick?: () => void;
 }
 
 export const PostCard: React.FC<PostCardProps> = ({
@@ -20,6 +21,7 @@ export const PostCard: React.FC<PostCardProps> = ({
   imageUrl,
   categories,
   description,
+  onPostClick,
 }) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [descriptionClass, setDescriptionClass] = useState(
@@ -46,7 +48,7 @@ export const PostCard: React.FC<PostCardProps> = ({
   }, [title]);
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={onPostClick}>
       <img alt={title} src={imageUrl} className={styles.image} />
 
       <div className={styles.content}>

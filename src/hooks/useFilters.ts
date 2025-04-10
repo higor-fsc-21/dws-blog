@@ -1,6 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
-import { useFetchCategories } from "./queries/useFetchCategories";
-import { useFetchAuthors } from "./queries/useFetchAuthors";
+import { useFetchCategories, useFetchAuthors } from "./queries";
 import { AppliedFilters, FilterOption } from "../types/app";
 import { Category, Author } from "../types/api";
 

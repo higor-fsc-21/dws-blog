@@ -1,27 +1,37 @@
 import React from "react";
 import styles from "./PostContent.module.scss";
-import { mockPost } from "../../mocks";
+import { Post } from "../../../../types/api";
 
-const PostContent: React.FC = () => {
+interface PostContentProps {
+  post: Post;
+}
+
+const PostContent: React.FC<PostContentProps> = ({ post }) => {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>{mockPost.title}</h1>
+      <h1 className={styles.title}>{post.title}</h1>
       <div className={styles.authorInfo}>
         <img
-          alt="Author"
+          alt={post.author.name}
           className={styles.authorImage}
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKC0e4V59rDNR5lA5x7-PTmBnDUzlfEwXkiw&s"
+          src={post.author.profilePicture}
         />
         <div>
           <p className={styles.authorName}>
-            <span>Written by:</span> {mockPost.author}
+            <span>Written by:</span> {post.author.name}
           </p>
-          <p className={styles.date}>{mockPost.date}</p>
+          <p className={styles.date}>
+            {new Date(post.createdAt).toLocaleDateString()}
+          </p>
         </div>
       </div>
-      <img className={styles.mainImage} src={mockPost.imageUrl} alt="Main" />
+      <img
+        className={styles.mainImage}
+        src={post.thumbnail_url}
+        alt={post.title}
+      />
       <div className={styles.text}>
-        {mockPost.description.split("\n").map((line, index) => (
+        {post.content.split("\n").map((line, index) => (
           <p key={index}>{line}</p>
         ))}
       </div>
