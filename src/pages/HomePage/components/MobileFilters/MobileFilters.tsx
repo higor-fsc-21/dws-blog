@@ -1,11 +1,15 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { Dropdown } from "../../../../components/Dropdown";
 import { SortButton } from "../../../../components/buttons";
 import { useFilters } from "../../../../hooks/useFilters";
+import { AppliedFilters, FilterOption } from "../../../../types/app";
 import styles from "./MobileFilters.module.scss";
-import { FilterOption } from "../../../../types/app";
 
-const MobileFilters: React.FC = () => {
+interface MobileFiltersProps {
+  onApplyFilters: (filters: Partial<AppliedFilters>) => void;
+}
+
+const MobileFilters = ({ onApplyFilters }: MobileFiltersProps) => {
   const {
     isLoadingCategories,
     isLoadingAuthors,
@@ -15,7 +19,7 @@ const MobileFilters: React.FC = () => {
     selectedAuthorOptions,
     setSelectedAuthorOptions,
     setSelectedCategoryOptions,
-  } = useFilters({});
+  } = useFilters({ onApplyFilters });
 
   const handleCategoryDropdownChange = useCallback(
     (options: FilterOption[]) => setSelectedCategoryOptions(options),
@@ -25,6 +29,11 @@ const MobileFilters: React.FC = () => {
   const handleAuthorDropdownChange = useCallback(
     (options: FilterOption[]) => setSelectedAuthorOptions(options),
     [setSelectedAuthorOptions]
+  );
+
+  const handleSortChange = useCallback(
+    (order: "newest" | "oldest") => onApplyFilters({ order }),
+    [onApplyFilters]
   );
 
   return (
@@ -41,7 +50,7 @@ const MobileFilters: React.FC = () => {
         onChange={handleAuthorDropdownChange}
         selectedOptions={selectedAuthorOptions}
       />
-      <SortButton initialOrder="newest" />
+      <SortButton initialOrder="newest" onOrderChange={handleSortChange} />
     </div>
   );
 };

@@ -1,14 +1,11 @@
 import { useState, useCallback, useMemo } from "react";
 import { useFetchCategories } from "./queries/useFetchCategories";
 import { useFetchAuthors } from "./queries/useFetchAuthors";
-import { FilterOption } from "../types/app";
+import { AppliedFilters, FilterOption } from "../types/app";
 import { Category, Author } from "../types/api";
 
 interface UseFiltersProps {
-  onApplyFilters?: (filters: {
-    categories: string[];
-    authors: string[];
-  }) => void;
+  onApplyFilters?: (filters: Partial<AppliedFilters>) => void;
 }
 
 export const useFilters = ({ onApplyFilters }: UseFiltersProps = {}) => {
@@ -41,8 +38,8 @@ export const useFilters = ({ onApplyFilters }: UseFiltersProps = {}) => {
 
   const applyFilters = useCallback(() => {
     onApplyFilters?.({
-      categories: selectedCategoryOptions.map((opt) => opt.label),
-      authors: selectedAuthorOptions.map((opt) => opt.label),
+      authorsIds: selectedAuthorOptions.map((opt) => opt.id),
+      categoriesIds: selectedCategoryOptions.map((opt) => opt.id),
     });
   }, [onApplyFilters, selectedCategoryOptions, selectedAuthorOptions]);
 

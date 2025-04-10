@@ -4,7 +4,7 @@ import FilterSection from "./FilterSection";
 import styles from "./DesktopFilters.module.scss";
 import { SlidersHorizontal } from "lucide-react";
 import { useFilters } from "../../../../hooks/useFilters";
-import { FilterOption } from "../../../../types/app";
+import { AppliedFilters, FilterOption } from "../../../../types/app";
 
 const FILTER_ICON_SIZE = 20;
 
@@ -22,10 +22,7 @@ const toggleOption = (
 };
 
 interface DesktopFiltersProps {
-  onApplyFilters: (filters: {
-    categories: string[];
-    authors: string[];
-  }) => void;
+  onApplyFilters: (filters: Partial<AppliedFilters>) => void;
 }
 
 const DesktopFilters: React.FC<DesktopFiltersProps> = ({ onApplyFilters }) => {
