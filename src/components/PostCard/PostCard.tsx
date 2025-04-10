@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { Tag } from "../Tag/Tag"; // Assuming Tag component path
 import styles from "./PostCard.module.scss";
 
@@ -14,7 +14,7 @@ interface PostCardProps {
   onPostClick?: () => void;
 }
 
-export const PostCard = ({
+const PostCardComponent = ({
   date,
   title,
   author,
@@ -68,3 +68,5 @@ export const PostCard = ({
     </div>
   );
 };
+
+export const PostCard = memo(PostCardComponent);
