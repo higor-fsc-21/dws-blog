@@ -17,18 +17,30 @@ const MobileFilters = ({ onApplyFilters }: MobileFiltersProps) => {
     authorOptions,
     selectedCategoryOptions,
     selectedAuthorOptions,
-    setSelectedAuthorOptions,
     setSelectedCategoryOptions,
+    setSelectedAuthorOptions,
   } = useFilters({ onApplyFilters });
 
   const handleCategoryDropdownChange = useCallback(
-    (options: FilterOption[]) => setSelectedCategoryOptions(options),
-    [setSelectedCategoryOptions]
+    (options: FilterOption[]) => {
+      setSelectedCategoryOptions(options);
+      onApplyFilters({
+        categoriesIds: options.map((opt) => opt.id),
+        authorsIds: selectedAuthorOptions.map((opt) => opt.id),
+      });
+    },
+    [setSelectedCategoryOptions, onApplyFilters, selectedAuthorOptions]
   );
 
   const handleAuthorDropdownChange = useCallback(
-    (options: FilterOption[]) => setSelectedAuthorOptions(options),
-    [setSelectedAuthorOptions]
+    (options: FilterOption[]) => {
+      setSelectedAuthorOptions(options);
+      onApplyFilters({
+        authorsIds: options.map((opt) => opt.id),
+        categoriesIds: selectedCategoryOptions.map((opt) => opt.id),
+      });
+    },
+    [setSelectedAuthorOptions, onApplyFilters, selectedCategoryOptions]
   );
 
   const handleSortChange = useCallback(
