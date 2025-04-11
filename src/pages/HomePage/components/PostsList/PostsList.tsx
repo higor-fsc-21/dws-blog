@@ -6,6 +6,7 @@ import { PostCard } from "../../../../components/PostCard/PostCard";
 import LoadingScreen from "../../../../components/LoadingScreen";
 import { Category, Post } from "../../../../types/api";
 import styles from "./PostsList.module.scss";
+import ErrorScreen from "../../../../components/ErrorScreen/ErrorScreen";
 
 interface CellProps {
   rowIndex: number;
@@ -28,9 +29,8 @@ const PostsList = ({ posts, isLoading, isError }: PostsListProps) => {
   const navigate = useNavigate();
 
   if (isLoading) return <LoadingScreen />;
-  if (isError) return <div className={styles.error}>Error loading posts.</div>;
-  if (!posts || posts.length === 0)
-    return <div className={styles.empty}>No posts found.</div>;
+  if (isError) return <ErrorScreen message="Error loading posts." />;
+  if (!posts || !posts.length) return <ErrorScreen message="No posts found." />;
 
   return (
     <div className={styles.container}>

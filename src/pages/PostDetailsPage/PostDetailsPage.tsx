@@ -1,36 +1,35 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { MainButton } from "../../components/buttons";
+import ErrorScreen from "../../components/ErrorScreen/ErrorScreen";
 import LoadingScreen from "../../components/LoadingScreen";
 import { useFetchPost } from "../../hooks/queries";
 import LastPostsList from "./components/LastPostsList";
 import PostContent from "./components/PostContent";
 import styles from "./PostDetailsPage.module.scss";
 
-const PostDetailsPage = () => {
+export const PostDetailsPage = () => {
   const navigate = useNavigate();
   const { id: postId } = useParams<{ id: string }>();
 
   const { data, isLoading, isError } = useFetchPost(postId!);
   const { post, lastPosts } = data || {};
 
+  const navigateToHome = () => navigate("/");
+
+  const handleError = (message: string) => (
+    <ErrorScreen message={message} onButtonClick={navigateToHome} />
+  );
+
   if (isLoading) return <LoadingScreen />;
-  if (isError || !post) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.error}>
-          <h2>Error loading post</h2>
-          <button onClick={() => navigate("/")}>Return to Home</button>
-        </div>
-      </div>
-    );
-  }
+  if (isError) return handleError("Error loading post details.");
+  if (!post) return handleError("Post not found.");
 
   return (
     <div className={styles.container}>
       <MainButton
         icon="arrow-left"
         variant="secondary"
-        onClick={() => navigate("/")}
+        onClick={navigateToHome}
         className={styles.backButton}
       >
         Back
