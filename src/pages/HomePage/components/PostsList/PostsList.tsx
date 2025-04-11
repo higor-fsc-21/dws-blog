@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeGrid as Grid } from "react-window";
 import { PostCard } from "../../../../components/PostCard/PostCard";
+import LoadingScreen from "../../../../components/LoadingScreen";
 import { Category, Post } from "../../../../types/api";
 import styles from "./PostsList.module.scss";
 
@@ -26,7 +27,7 @@ const MAX_CARD_WIDTH = 400;
 const PostsList = ({ posts, isLoading, isError }: PostsListProps) => {
   const navigate = useNavigate();
 
-  if (isLoading) return <div className={styles.loading}>Loading posts...</div>;
+  if (isLoading) return <LoadingScreen />;
   if (isError) return <div className={styles.error}>Error loading posts.</div>;
   if (!posts || posts.length === 0)
     return <div className={styles.empty}>No posts found.</div>;

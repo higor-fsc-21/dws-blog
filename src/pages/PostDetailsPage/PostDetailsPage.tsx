@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { MainButton } from "../../components/buttons";
+import LoadingScreen from "../../components/LoadingScreen";
 import { useFetchPost } from "../../hooks/queries";
 import LastPostsList from "./components/LastPostsList";
 import PostContent from "./components/PostContent";
@@ -12,10 +13,7 @@ const PostDetailsPage = () => {
   const { data, isLoading, isError } = useFetchPost(postId!);
   const { post, lastPosts } = data || {};
 
-  if (isLoading) {
-    return <div className={styles.container}>Loading...</div>;
-  }
-
+  if (isLoading) return <LoadingScreen />;
   if (isError || !post) {
     return (
       <div className={styles.container}>
