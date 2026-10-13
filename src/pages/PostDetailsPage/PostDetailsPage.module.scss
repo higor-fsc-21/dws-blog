@@ -21,6 +21,12 @@
 .backButton {
   align-self: flex-start;
   z-index: 2;
+
+  @include desktop {
+    position: fixed;
+    top: 13rem;
+    left: 7.5rem;
+  }
 }
 
 .divider {

@@ -9,12 +9,13 @@
   z-index: 3;
   position: fixed;
   padding: $spacing-small;
-  background-color: linear-gradient(
+  background: linear-gradient(
     45deg,
     #d2f1ef 0%,
     $color-neutral-white 50%,
     #ffeef5 100%
   );
+  background-attachment: fixed;
   border-bottom: 1px solid $color-neutral-extra-light;
 }
 

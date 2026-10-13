@@ -3,9 +3,17 @@
 
 .container {
   width: 100%;
-  overflow: hidden; /* Hide scrollbars */
+  overflow: hidden;
   min-height: 20rem;
   padding-bottom: $spacing-large;
+
+  @include mobile {
+    flex: 1;
+  }
+
+  @include desktop {
+    height: calc(100vh - 20rem);
+  }
 }
 
 .grid {
