@@ -22,6 +22,6 @@ export const queryClient = new QueryClient({
 persistQueryClient({
   queryClient,
   maxAge: ONE_DAY_IN_MS,
-  buster: "my-app-version-1",
+  buster: "my-app-version-2",
   persister: localStoragePersister,
 });
