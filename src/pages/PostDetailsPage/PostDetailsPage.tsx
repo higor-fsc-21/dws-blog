@@ -26,16 +26,16 @@ export const PostDetailsPage = () => {
 
   return (
     <div className={styles.container}>
-      <MainButton
-        icon="arrow-left"
-        variant="secondary"
-        onClick={navigateToHome}
-        className={styles.backButton}
-      >
-        Back
-      </MainButton>
-
       <div className={styles.content}>
+        <MainButton
+          icon="arrow-left"
+          variant="secondary"
+          onClick={navigateToHome}
+          className={styles.backButton}
+        >
+          Back
+        </MainButton>
+
         <PostContent post={post} />
         <hr className={styles.divider} />
         <LastPostsList posts={lastPosts || []} />

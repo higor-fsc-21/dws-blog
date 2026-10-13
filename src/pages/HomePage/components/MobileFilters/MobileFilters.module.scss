@@ -2,12 +2,15 @@
 @use "../../../../styles/variables" as *;
 
 .mobileFilters {
-  top: 9rem;
   z-index: 1;
   flex-wrap: wrap;
-  position: sticky;
   gap: $spacing-xsmall;
   padding: $spacing-medium 0;
 
   @include flex;
+
+  @include desktop {
+    top: 9rem;
+    position: sticky;
+  }
 }

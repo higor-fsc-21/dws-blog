@@ -11,13 +11,16 @@
     #ffeef5 100%
   );
   background-attachment: fixed;
+
+  @include mobile {
+    padding-top: 6.5rem;
+  }
 }
 
 .main {
-  margin: 0 $spacing-xhuge;
-  padding: 0 $spacing-medium;
+  padding: 0 $spacing-huge;
 
   @include mobile {
-    margin: 0;
+    padding: 0 $spacing-medium;
   }
 }

@@ -8,7 +8,7 @@
   width: 100%;
   z-index: 3;
   position: fixed;
-  padding: $spacing-small;
+  padding: $spacing-small $spacing-huge;
   background: linear-gradient(
     45deg,
     #d2f1ef 0%,
@@ -17,12 +17,15 @@
   );
   background-attachment: fixed;
   border-bottom: 1px solid $color-neutral-extra-light;
+
+  @include mix.mobile {
+    padding: $spacing-small $spacing-medium;
+  }
 }
 
 .headerContent {
   position: relative;
   gap: $spacing-large;
-  margin: 0 $spacing-xhuge;
 
   @include mix.flex(row, flex-end, center);
 
