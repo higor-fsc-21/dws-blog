@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeGrid as Grid, GridChildComponentProps } from "react-window";
@@ -24,7 +25,6 @@ const CARD_HEIGHT = 425;
 const MIN_CARD_WIDTH = 300;
 const MAX_CARD_WIDTH = 400;
 
-// Must stay at module level: a Cell declared during render gets a new identity and remounts every card.
 const Cell = ({
   data,
   style,
@@ -34,18 +34,31 @@ const Cell = ({
   const { posts, columnCount, onPostClick } = data;
   const post = posts[rowIndex * columnCount + columnIndex];
 
-  if (!post) return null;
+  const categories = useMemo(
+    () => post?.categories.map((cat: Category) => cat.name),
+    [post?.categories],
+  );
+  const date = useMemo(
+    () => post?.createdAt && new Date(post.createdAt).toLocaleDateString(),
+    [post?.createdAt],
+  );
+  const handleClick = useCallback(
+    () => post?.id && onPostClick(post.id),
+    [onPostClick, post?.id],
+  );
+
+  if (!post || !categories || !date) return null;
 
   return (
     <div style={{ ...style, padding: GAP / 2 }}>
       <PostCard
+        date={date}
         title={post.title}
         author={post.author.name}
         description={post.content}
         imageUrl={post.thumbnail_url}
-        onPostClick={() => onPostClick(post.id)}
-        date={new Date(post.createdAt).toLocaleDateString()}
-        categories={post.categories.map((cat: Category) => cat.name)}
+        categories={categories}
+        onPostClick={handleClick}
       />
     </div>
   );
@@ -53,6 +66,10 @@ const Cell = ({
 
 const PostsList = ({ posts, isLoading, isError }: PostsListProps) => {
   const navigate = useNavigate();
+  const handlePostClick = useCallback(
+    (postId: string) => navigate(`/post/${postId}`),
+    [navigate],
+  );
 
   if (isLoading) return <LoadingScreen />;
   if (isError) return <ErrorScreen message="Error loading posts." />;
@@ -71,7 +88,7 @@ const PostsList = ({ posts, isLoading, isError }: PostsListProps) => {
           const itemData: CellData = {
             posts,
             columnCount,
-            onPostClick: (postId) => navigate(`/post/${postId}`),
+            onPostClick: handlePostClick,
           };
 
           return (
