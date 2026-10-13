@@ -1,25 +1,21 @@
-import { useState } from "react";
 import styles from "./SortButton.module.scss";
 import { DynamicIcon } from "lucide-react/dynamic";
 import { IconSize } from "../../../constants/icons";
 type SortOrder = "newest" | "oldest";
 
 interface SortButtonProps {
-  initialOrder?: SortOrder;
+  order?: SortOrder;
   onOrderChange?: (order: SortOrder) => void;
 }
 
 export const SortButton = ({
-  initialOrder = "newest",
   onOrderChange,
+  order = "newest",
 }: SortButtonProps) => {
-  const [order, setOrder] = useState<SortOrder>(initialOrder);
-
   const label = order === "newest" ? "Newest first" : "Oldest first";
 
   const handleClick = () => {
     const newOrder = order === "newest" ? "oldest" : "newest";
-    setOrder(newOrder);
     onOrderChange?.(newOrder);
   };
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback, Dispatch, SetStateAction } from "react";
 import { MainButton } from "../../../../components/buttons/MainButton";
 import FilterSection from "./FilterSection";
 import styles from "./DesktopFilters.module.scss";
@@ -11,7 +11,7 @@ const FILTER_ICON_SIZE = 20;
 const toggleOption = (
   option: FilterOption,
   currentSelection: FilterOption[],
-  setter: React.Dispatch<React.SetStateAction<FilterOption[]>>
+  setter: Dispatch<SetStateAction<FilterOption[]>>
 ) => {
   const index = currentSelection.findIndex((item) => item.id === option.id);
   if (index > -1) {
@@ -22,10 +22,14 @@ const toggleOption = (
 };
 
 interface DesktopFiltersProps {
+  appliedFilters?: AppliedFilters;
   onApplyFilters: (filters: Partial<AppliedFilters>) => void;
 }
 
-const DesktopFilters = ({ onApplyFilters }: DesktopFiltersProps) => {
+const DesktopFilters = ({
+  appliedFilters,
+  onApplyFilters,
+}: DesktopFiltersProps) => {
   const {
     isLoadingCategories,
     isLoadingAuthors,
@@ -36,7 +40,7 @@ const DesktopFilters = ({ onApplyFilters }: DesktopFiltersProps) => {
     setSelectedAuthorOptions,
     setSelectedCategoryOptions,
     applyFilters,
-  } = useFilters({ onApplyFilters });
+  } = useFilters({ appliedFilters, onApplyFilters });
 
   const handleCategorySelect = useCallback(
     (option: FilterOption) => {

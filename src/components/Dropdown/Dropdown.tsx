@@ -7,16 +7,23 @@ import { useClickOutside } from "../../hooks/useClickOutside";
 import { DropdownProvider, useDropdown } from "./DropdownContext";
 
 interface DropdownProps {
+  placeholder?: string;
   isLoading?: boolean;
   options: DropdownOption[];
   selectedOptions?: DropdownOption[];
   onChange?: (selected: DropdownOption[]) => void;
 }
 
-const DropdownInner = () => {
+const DropdownInner = ({ placeholder = "Category" }: { placeholder?: string }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { selectedOptions, isLoading, isOpen, toggleDropdown, closeDropdown } =
-    useDropdown();
+  const {
+    selectedOptions,
+    isLoading,
+    isOpen,
+    toggleDropdown,
+    closeDropdown,
+    clearSelection,
+  } = useDropdown();
 
   useClickOutside(dropdownRef, closeDropdown);
 
@@ -25,7 +32,9 @@ const DropdownInner = () => {
       <CategoryButton
         isOpen={isOpen}
         disabled={isLoading}
+        placeholder={placeholder}
         onClick={toggleDropdown}
+        onClear={selectedOptions.length > 0 ? clearSelection : undefined}
         selectedCategories={selectedOptions.map((opt) => opt.label)}
       />
       <DropdownContent />
@@ -34,6 +43,7 @@ const DropdownInner = () => {
 };
 
 export const Dropdown = ({
+  placeholder = "Category",
   options,
   isLoading = false,
   onChange = () => {},
@@ -46,7 +56,7 @@ export const Dropdown = ({
       isLoading={isLoading}
       selectedOptions={selectedOptions}
     >
-      <DropdownInner />
+      <DropdownInner placeholder={placeholder} />
     </DropdownProvider>
   );
 };

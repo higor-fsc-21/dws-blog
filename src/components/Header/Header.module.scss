@@ -9,7 +9,12 @@
   z-index: 3;
   position: fixed;
   padding: $spacing-small;
-  background-color: transparent;
+  background-color: linear-gradient(
+    45deg,
+    #d2f1ef 0%,
+    $color-neutral-white 50%,
+    #ffeef5 100%
+  );
   border-bottom: 1px solid $color-neutral-extra-light;
 }
 
@@ -28,6 +33,7 @@
 .logo {
   left: 0;
   width: 24rem;
+  cursor: pointer;
   position: absolute;
   color: $color-primary-medium;
 

@@ -35,6 +35,21 @@
   }
 }
 
+.clearIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0.2rem;
+  border-radius: 50%;
+  color: $color-secondary-medium;
+
+  &:hover {
+    background-color: rgba($color-secondary-medium, 0.15);
+  }
+}
+
 .iconOpen {
   transform: rotate(180deg);
 }

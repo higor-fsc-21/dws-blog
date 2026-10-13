@@ -7,8 +7,15 @@
   height: 42.5rem;
   min-width: 30rem;
   overflow: hidden;
+  cursor: pointer;
   border-radius: $spacing-medium;
   background-color: $color-neutral-white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
 
   @include shadow;
   @include flex-column;

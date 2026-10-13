@@ -4,20 +4,21 @@ import { AppliedFilters } from "../../../../types/app";
 import styles from "./PageHeader.module.scss";
 
 interface PageHeaderProps {
+  order?: "newest" | "oldest";
   onApplyFilters: (filters: Partial<AppliedFilters>) => void;
 }
 
-const PageHeader = ({ onApplyFilters }: PageHeaderProps) => {
+const PageHeader = ({ order = "newest", onApplyFilters }: PageHeaderProps) => {
   const handleSortChange = useCallback(
-    (order: "newest" | "oldest") => onApplyFilters({ order }),
-    [onApplyFilters]
+    (newOrder: "newest" | "oldest") => onApplyFilters({ order: newOrder }),
+    [onApplyFilters],
   );
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>DWS blog</h1>
 
-      <SortButton initialOrder="newest" onOrderChange={handleSortChange} />
+      <SortButton order={order} onOrderChange={handleSortChange} />
     </div>
   );
 };

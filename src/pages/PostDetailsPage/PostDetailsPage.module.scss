@@ -13,22 +13,14 @@
 
 .content {
   margin: 0 auto;
+  width: 100%;
   max-width: 100rem;
   padding: $spacing-large 0 0 0;
-
-  @include desktop {
-    margin-top: -6rem;
-  }
 }
 
 .backButton {
-  top: 0;
-  position: sticky;
-
-  @include custom-breakpoint(1300px) {
-    top: 0;
-    position: relative;
-  }
+  align-self: flex-start;
+  z-index: 2;
 }
 
 .divider {

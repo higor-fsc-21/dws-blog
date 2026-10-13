@@ -9,6 +9,7 @@ interface DropdownContextType {
   closeDropdown: () => void;
   toggleDropdown: () => void;
   handleOptionSelect: (option: DropdownOption) => void;
+  clearSelection: () => void;
 }
 
 const DropdownContext = createContext<DropdownContextType | null>(null);
@@ -51,8 +52,12 @@ export const DropdownProvider = ({
 
       onChange(newSelected);
     },
-    [selectedOptions, onChange]
+    [selectedOptions, onChange],
   );
+
+  const clearSelection = useCallback(() => {
+    onChange([]);
+  }, [onChange]);
 
   const value = {
     isOpen,
@@ -62,6 +67,7 @@ export const DropdownProvider = ({
     toggleDropdown,
     selectedOptions,
     handleOptionSelect,
+    clearSelection,
   };
 
   return (

@@ -2,36 +2,69 @@
 @use "../../../../../styles/mixins" as *;
 
 .section {
-  margin-bottom: $spacing-medium;
+  margin-bottom: $spacing-large;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-bottom: $spacing-small;
+  user-select: none;
 }
 
 .sectionTitle {
   color: $color-neutral-darkest;
-  margin-bottom: $spacing-xxsmall;
+  @include heading-style(h3);
+  font-size: 1.6rem;
+}
 
-  @include body-text;
+.chevron {
+  color: $color-neutral-dark;
+  transition: transform 0.2s ease;
+
+  &.chevronOpen {
+    transform: rotate(180deg);
+  }
 }
 
 .optionsList {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xsmall;
 }
 
 .optionItem {
   cursor: pointer;
-  padding: $spacing-xsmall;
+  padding: 0.6rem $spacing-small;
+  min-height: 3.2rem;
+  border-radius: $border-radius-xxsmall;
+  border: 1px solid $color-neutral-extra-light;
+  background-color: transparent;
+  color: $color-neutral-darkest;
   transition: all 0.2s ease;
-  color: $color-neutral-dark;
-  border-bottom: 1px solid $color-neutral-extra-light;
+  display: flex;
+  align-items: center;
 
   @include body-text(small);
 
-  &:hover,
+  &:hover {
+    border-color: $color-neutral-light;
+    background-color: rgba($color-neutral-lightest, 0.6);
+  }
+
   &.selected {
-    color: $color-secondary-medium;
+    border-color: $color-accent-dark;
+    background-color: rgba($color-accent-light, 0.08);
+    color: $color-accent-dark;
+    font-weight: $weight-semibold;
   }
 }
 
 .loadingText {
   padding: $spacing-xsmall;
   color: $color-neutral-dark;
+  @include body-text(small);
 }

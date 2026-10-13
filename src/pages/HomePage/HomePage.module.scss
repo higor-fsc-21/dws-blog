@@ -14,6 +14,6 @@
   @include mix.desktop {
     gap: $spacing-large;
     flex-direction: row;
-    height: calc(100vh - 20rem);
+    padding-bottom: 4rem;
   }
 }

@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../../contexts/AppContext";
+import useResponsive from "../../hooks/useResponsive";
 
 // Mock dependencies
 jest.mock("react-router-dom", () => ({
@@ -17,6 +18,8 @@ jest.mock("../../hooks/useResponsive", () => ({
   default: jest.fn(),
 }));
 
+const mockUseResponsive = useResponsive as unknown as jest.Mock;
+
 describe("Header", () => {
   const mockNavigate = jest.fn();
   const mockSetSearch = jest.fn();
@@ -27,7 +30,7 @@ describe("Header", () => {
   });
 
   it("renders desktop version with SearchBar when isDesktop is true", () => {
-    require("../../hooks/useResponsive").default.mockReturnValue({
+    mockUseResponsive.mockReturnValue({
       isDesktop: true,
       isMobile: false,
     });
@@ -39,7 +42,7 @@ describe("Header", () => {
   });
 
   it("renders mobile version with SearchButton when isMobile is true", () => {
-    require("../../hooks/useResponsive").default.mockReturnValue({
+    mockUseResponsive.mockReturnValue({
       isDesktop: false,
       isMobile: true,
     });
@@ -51,7 +54,7 @@ describe("Header", () => {
   });
 
   it("handles search functionality in desktop version", () => {
-    require("../../hooks/useResponsive").default.mockReturnValue({
+    mockUseResponsive.mockReturnValue({
       isDesktop: true,
       isMobile: false,
     });
@@ -67,7 +70,7 @@ describe("Header", () => {
   });
 
   it("opens search modal when clicking search button in mobile version", () => {
-    require("../../hooks/useResponsive").default.mockReturnValue({
+    mockUseResponsive.mockReturnValue({
       isDesktop: false,
       isMobile: true,
     });

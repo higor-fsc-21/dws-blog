@@ -6,10 +6,14 @@ import { AppliedFilters, FilterOption } from "../../../../types/app";
 import styles from "./MobileFilters.module.scss";
 
 interface MobileFiltersProps {
+  appliedFilters?: AppliedFilters;
   onApplyFilters: (filters: Partial<AppliedFilters>) => void;
 }
 
-const MobileFilters = ({ onApplyFilters }: MobileFiltersProps) => {
+const MobileFilters = ({
+  appliedFilters,
+  onApplyFilters,
+}: MobileFiltersProps) => {
   const {
     isLoadingCategories,
     isLoadingAuthors,
@@ -19,7 +23,7 @@ const MobileFilters = ({ onApplyFilters }: MobileFiltersProps) => {
     selectedAuthorOptions,
     setSelectedCategoryOptions,
     setSelectedAuthorOptions,
-  } = useFilters({ onApplyFilters });
+  } = useFilters({ appliedFilters, onApplyFilters });
 
   const handleCategoryDropdownChange = useCallback(
     (options: FilterOption[]) => {
@@ -29,7 +33,7 @@ const MobileFilters = ({ onApplyFilters }: MobileFiltersProps) => {
         authorsIds: selectedAuthorOptions.map((opt) => opt.id),
       });
     },
-    [setSelectedCategoryOptions, onApplyFilters, selectedAuthorOptions]
+    [setSelectedCategoryOptions, onApplyFilters, selectedAuthorOptions],
   );
 
   const handleAuthorDropdownChange = useCallback(
@@ -40,29 +44,34 @@ const MobileFilters = ({ onApplyFilters }: MobileFiltersProps) => {
         categoriesIds: selectedCategoryOptions.map((opt) => opt.id),
       });
     },
-    [setSelectedAuthorOptions, onApplyFilters, selectedCategoryOptions]
+    [setSelectedAuthorOptions, onApplyFilters, selectedCategoryOptions],
   );
 
   const handleSortChange = useCallback(
     (order: "newest" | "oldest") => onApplyFilters({ order }),
-    [onApplyFilters]
+    [onApplyFilters],
   );
 
   return (
     <div className={styles.mobileFilters}>
       <Dropdown
+        placeholder="Category"
         options={categoryOptions}
         isLoading={isLoadingCategories}
         onChange={handleCategoryDropdownChange}
         selectedOptions={selectedCategoryOptions}
       />
       <Dropdown
+        placeholder="Author"
         options={authorOptions}
         isLoading={isLoadingAuthors}
         onChange={handleAuthorDropdownChange}
         selectedOptions={selectedAuthorOptions}
       />
-      <SortButton initialOrder="newest" onOrderChange={handleSortChange} />
+      <SortButton
+        onOrderChange={handleSortChange}
+        order={appliedFilters?.order ?? "newest"}
+      />
     </div>
   );
 };

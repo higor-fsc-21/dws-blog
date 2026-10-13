@@ -25,7 +25,12 @@ const Header = () => {
     <>
       <header className={styles.header}>
         <div className={styles.headerContent}>
-          <img className={styles.logo} alt="Dentsu World Services" src={logo} />
+          <img
+            src={logo}
+            className={styles.logo}
+            alt="Dentsu World Services"
+            onClick={() => navigate("/")}
+          />
           {isDesktop && (
             <SearchBar
               value={localSearch}
@@ -41,8 +46,13 @@ const Header = () => {
       </header>
 
       <SearchModal
+        value={localSearch}
         onSubmit={handleSearch}
         onChange={setLocalSearch}
+        onClear={() => {
+          setSearch("");
+          setLocalSearch("");
+        }}
         isOpen={isSearchModalOpen}
         onClose={() => setIsSearchModalOpen(false)}
       />

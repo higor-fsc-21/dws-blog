@@ -1,8 +1,7 @@
-import React, { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useFetchPosts } from "../../hooks/queries";
 import useResponsive from "../../hooks/useResponsive";
 import { Post } from "../../types/api";
-import { AppliedFilters } from "../../types/app";
 import styles from "./HomePage.module.scss";
 import {
   DesktopFilters,
@@ -13,7 +12,7 @@ import {
 import { useApp } from "../../contexts/AppContext";
 
 const sortPostsByOrder = (posts: Post[], order: "newest" | "oldest") => {
-  return posts.sort((a, b) => {
+  return [...posts].sort((a, b) => {
     const dateA = new Date(a.createdAt);
     const dateB = new Date(b.createdAt);
     return order === "newest"
@@ -23,15 +22,9 @@ const sortPostsByOrder = (posts: Post[], order: "newest" | "oldest") => {
 };
 
 const HomePage = () => {
-  const { search } = useApp();
+  const { search, appliedFilters, handleApplyFilters } = useApp();
   const { isMobile, isDesktop } = useResponsive();
   const { data, isLoading, isError } = useFetchPosts();
-
-  const [appliedFilters, setAppliedFilters] = useState<AppliedFilters>({});
-
-  const handleApplyFilters = (filters: Partial<AppliedFilters>) => {
-    setAppliedFilters((prev) => ({ ...prev, ...filters }));
-  };
 
   const posts = useMemo(() => {
     if (!data) return [];
@@ -59,10 +52,25 @@ const HomePage = () => {
 
   return (
     <div>
-      {isDesktop && <PageHeader onApplyFilters={handleApplyFilters} />}
+      {isDesktop && (
+        <PageHeader
+          order={appliedFilters.order ?? "newest"}
+          onApplyFilters={handleApplyFilters}
+        />
+      )}
       <div className={styles.content}>
-        {isMobile && <MobileFilters onApplyFilters={handleApplyFilters} />}
-        {isDesktop && <DesktopFilters onApplyFilters={handleApplyFilters} />}
+        {isMobile && (
+          <MobileFilters
+            appliedFilters={appliedFilters}
+            onApplyFilters={handleApplyFilters}
+          />
+        )}
+        {isDesktop && (
+          <DesktopFilters
+            appliedFilters={appliedFilters}
+            onApplyFilters={handleApplyFilters}
+          />
+        )}
         <PostsList posts={posts} isLoading={isLoading} isError={isError} />
       </div>
     </div>

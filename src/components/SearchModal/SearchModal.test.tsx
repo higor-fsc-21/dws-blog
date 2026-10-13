@@ -2,10 +2,12 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { SearchModal } from "./SearchModal";
 
 jest.mock("lucide-react", () => ({
-  ArrowLeftIcon: (props: any) => (
+  ArrowLeftIcon: (props: { onClick?: () => void }) => (
     <svg data-testid="arrow-left-icon" onClick={props.onClick} />
   ),
-  X: (props: any) => <svg data-testid="x-icon" onClick={props.onClick} />,
+  X: (props: { onClick?: () => void }) => (
+    <svg data-testid="x-icon" onClick={props.onClick} />
+  ),
 }));
 
 describe("SearchModal", () => {

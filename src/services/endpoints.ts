@@ -34,7 +34,17 @@ export const fetchAuthors = async (): Promise<Author[]> => {
   return response.data;
 };
 
+export const fetchAuthorById = async (id: string): Promise<Author> => {
+  const response = await api.get<Author>(`/authors/${id}`);
+  return response.data;
+};
+
 export const fetchCategories = async (): Promise<Category[]> => {
   const response = await api.get<Category[]>("/categories/");
+  return response.data;
+};
+
+export const fetchCategoryById = async (id: string): Promise<Category> => {
+  const response = await api.get<Category>(`/categories/${id}`);
   return response.data;
 };

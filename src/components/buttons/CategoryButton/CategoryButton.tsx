@@ -10,24 +10,41 @@ type AllowedHtmlButtonProps = Pick<
 
 type CategoryButtonProps = AllowedHtmlButtonProps & {
   isOpen?: boolean;
+  placeholder?: string;
   selectedCategories?: string[];
+  onClear?: () => void;
 };
 
 export const CategoryButton = ({
   isOpen = false,
+  placeholder = "Category",
   selectedCategories = [],
+  onClear,
   ...defaultButtonProps
 }: CategoryButtonProps) => {
+  const hasSelected = selectedCategories.length > 0;
   const buttonClasses = [
     styles.button,
-    selectedCategories.length > 0 && styles.selected,
+    hasSelected && styles.selected,
     isOpen ? styles.open : "",
   ].join(" ");
 
   const label = useMemo(() => {
-    if (selectedCategories.length === 0) return "Category";
+    if (!hasSelected) return placeholder;
     return selectedCategories.join(", ");
-  }, [selectedCategories]);
+  }, [hasSelected, placeholder, selectedCategories]);
+
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onClear?.();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.stopPropagation();
+      onClear?.();
+    }
+  };
 
   return (
     <button
@@ -37,11 +54,24 @@ export const CategoryButton = ({
     >
       <span>{label}</span>
 
-      <DynamicIcon
-        name="chevron-down"
-        size={IconSize.MEDIUM}
-        className={isOpen ? styles.iconOpen : ""}
-      />
+      {hasSelected && onClear ? (
+        <span
+          role="button"
+          tabIndex={0}
+          aria-label="Clear selection"
+          className={styles.clearIcon}
+          onClick={handleClear}
+          onKeyDown={handleKeyDown}
+        >
+          <DynamicIcon name="x" size={IconSize.SMALL} />
+        </span>
+      ) : (
+        <DynamicIcon
+          name="chevron-down"
+          size={IconSize.MEDIUM}
+          className={isOpen ? styles.iconOpen : ""}
+        />
+      )}
     </button>
   );
 };

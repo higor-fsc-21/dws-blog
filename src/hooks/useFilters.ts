@@ -1,13 +1,17 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { useFetchCategories, useFetchAuthors } from "./queries";
 import { AppliedFilters, FilterOption } from "../types/app";
 import { Category, Author } from "../types/api";
 
 interface UseFiltersProps {
+  appliedFilters?: AppliedFilters;
   onApplyFilters?: (filters: Partial<AppliedFilters>) => void;
 }
 
-export const useFilters = ({ onApplyFilters }: UseFiltersProps = {}) => {
+export const useFilters = ({
+  appliedFilters,
+  onApplyFilters,
+}: UseFiltersProps = {}) => {
   const [selectedCategoryOptions, setSelectedCategoryOptions] = useState<
     FilterOption[]
   >([]);
@@ -18,6 +22,34 @@ export const useFilters = ({ onApplyFilters }: UseFiltersProps = {}) => {
   const { data: authorsData, isLoading: isLoadingAuthors } = useFetchAuthors();
   const { data: categoriesData, isLoading: isLoadingCategories } =
     useFetchCategories();
+
+  useEffect(() => {
+    if (!categoriesData?.length) return;
+    const ids = appliedFilters?.categoriesIds;
+    if (ids && ids.length > 0) {
+      setSelectedCategoryOptions(
+        categoriesData
+          .filter((cat: Category) => ids.includes(cat.id))
+          .map((cat: Category) => ({ id: cat.id, label: cat.name }))
+      );
+    } else if (ids && ids.length === 0) {
+      setSelectedCategoryOptions([]);
+    }
+  }, [categoriesData, appliedFilters?.categoriesIds]);
+
+  useEffect(() => {
+    if (!authorsData?.length) return;
+    const ids = appliedFilters?.authorsIds;
+    if (ids && ids.length > 0) {
+      setSelectedAuthorOptions(
+        authorsData
+          .filter((auth: Author) => ids.includes(auth.id))
+          .map((auth: Author) => ({ id: auth.id, label: auth.name }))
+      );
+    } else if (ids && ids.length === 0) {
+      setSelectedAuthorOptions([]);
+    }
+  }, [authorsData, appliedFilters?.authorsIds]);
 
   const categoryOptions: FilterOption[] = useMemo(() => {
     if (!categoriesData?.length) return [];
